@@ -95,7 +95,7 @@ class Initialization extends AbstractThemeInitialization
         $assets_url = $this->get_theme_assets_url();
         $suffix = Functions::get_assets_suffix();
 
-        wp_enqueue_style( 'theme-login', "$assets_url/built/stylesheets/login$suffix.css" );
+        wp_enqueue_style( 'theme-login', "$assets_url/build/css/login$suffix.css" );
     }
 
     public function add_action_admin_menu()
@@ -195,7 +195,7 @@ class Initialization extends AbstractThemeInitialization
         $assets_url = $this->get_theme_assets_url();
         $suffix = Functions::get_assets_suffix();
 
-        add_editor_style( "$assets_url/built/stylesheets/editor$suffix.css" );
+        add_editor_style( "$assets_url/build/css/editor$suffix.css" );
     }
 
     public function admin_register_remove_meta_boxes()
@@ -256,11 +256,11 @@ class Initialization extends AbstractThemeInitialization
 
         wp_enqueue_style(
             'theme',
-            "$assets_url/built/stylesheets/screen$suffix.css"
+            "$assets_url/build/css/screen$suffix.css"
         );
         wp_enqueue_style(
             'theme-print',
-            "$assets_url/built/stylesheets/print$suffix.css",
+            "$assets_url/build/css/print$suffix.css",
             [],
             null,
             'print'
@@ -276,7 +276,7 @@ class Initialization extends AbstractThemeInitialization
         // Probably browser can load it faster if it will be placed in header with 'defer'.
         wp_enqueue_script(
             'theme',
-            "$assets_url/built/javascripts/common$suffix.js",
+            "$assets_url/build/js/common$suffix.js",
             []
         );
     }
