@@ -1,3 +1,6 @@
-// import $ from 'jquery';
+import $ from 'jquery';
+import detectTouchSupport from "./modules/detectTouchSupport";
 
-console.log('Hello world!');
+$( function ( $ ) {
+    detectTouchSupport();
+} );
