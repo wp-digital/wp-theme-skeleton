@@ -30,6 +30,7 @@
     "babel-preset-es2017": "^6.24.1",
     "browser-sync": "^2.18.13",
     "del": "^3.0.0",
+    "detect-touch-events": "^2.0.1",
     "eslint": "^4.9.0",
     "eslint-loader": "^1.9.0",
     "gulp": "github:gulpjs/gulp#4.0",

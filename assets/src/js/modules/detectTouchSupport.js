@@ -1,8 +1,8 @@
 let $ = window.jQuery;
+import detectTouchEvents from 'detect-touch-events';
+
 export default () => {
-    let msGesture = window.navigator && window.navigator.msPointerEnabled && window.MSGesture;
-	let touchSupport = (( "ontouchstart" in window ) || msGesture || window.DocumentTouch && document instanceof DocumentTouch);
-	if(touchSupport) {
+	if(detectTouchEvents.hasSupport === true) {
 	    $("body").removeClass('with-hovers');
 	}
 };
