@@ -7,4 +7,4 @@
     <meta name="theme-color" content="#000000"> <!-- @TODO: set theme color -->
     <?php wp_head() ?>
 </head>
-<body <?php body_class() ?>>
+<body <?php body_class( 'with-hovers' ) ?>>
