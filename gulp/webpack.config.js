@@ -2,6 +2,17 @@ let webpack = require('webpack');
 let config = require('./config');
 let isProd = process.env.NODE_ENV === 'production';
 
+let loaders = [
+    {
+        loader: 'babel-loader',
+        options: {
+            presets: [['es2015', {
+                loose: true
+            }], 'es2016', 'es2017'],
+            plugins: ['transform-decorators-legacy']
+        }
+    }
+];
 let plugins = [
     new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
@@ -9,6 +20,7 @@ let plugins = [
 ];
 
 if (isProd) {
+    loaders.push('eslint-loader');
     plugins.push(new webpack.optimize.UglifyJsPlugin({
         minimize: true,
         compress: {
@@ -33,15 +45,7 @@ module.exports = {
             {
                 test: /\.jsx?$/,
                 exclude: /(node_modules|bower_components)/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: [['es2015', {
-                            loose: true
-                        }], 'es2016', 'es2017'],
-                        plugins: ['transform-decorators-legacy']
-                    }
-                }
+                use: loaders
             }
         ]
     },
