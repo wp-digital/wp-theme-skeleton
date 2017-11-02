@@ -2,16 +2,7 @@
 
 namespace modules\theme;
 
-use WPKit\AdminPage\OptionPage;
-use WPKit\Fields\Text;
 use WPKit\Module\AbstractThemeInitialization;
-use WPKit\Options\Option;
-use WPKit\Options\OptionBox;
-use modules\post\Functions as Post;
-use modules\product\Functions as Product;
-use modules\reference\Functions as Reference;
-use modules\builder\Functions as Builder;
-use modules\api\Functions as API;
 
 /**
  * Class Initialization
@@ -71,6 +62,14 @@ class Initialization extends AbstractThemeInitialization
     {
         static::_enqueue_styles();
         static::_enqueue_scripts();
+    }
+
+    public function add_action_admin_enqueue_scripts()
+    {
+        $assets_url = $this->get_theme_assets_url();
+        $suffix = Functions::get_assets_suffix();
+
+        wp_enqueue_style( 'theme-admin', "$assets_url/build/css/admin$suffix.css" );
     }
 
     public function add_action_after_setup_theme()
