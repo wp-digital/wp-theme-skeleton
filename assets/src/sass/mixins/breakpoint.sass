@@ -9,7 +9,7 @@
 =breakpoint($property: width, $media-min : false, $media-max : false)
     @if ($media-min) 
         @if ($media-max)
-            @media only screen and (min-#{property}: $media-min + 'px') and (max-#{$property}: $media-max + 'px')
+            @media only screen and (min-#{$property}: $media-min + 'px') and (max-#{$property}: $media-max + 'px')
                 @content
         @else
             +breakpoint-min($media-min, $property)
