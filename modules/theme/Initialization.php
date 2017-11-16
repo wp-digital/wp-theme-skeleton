@@ -189,6 +189,14 @@ class Initialization extends AbstractThemeInitialization
         ];
     }
 
+    /**
+     * @return array|string
+     */
+    public function add_filter_deferred_loading_scripts()
+    {
+        return '*';
+    }
+
     public function admin_register_editor_stylesheet()
     {
         $assets_url = $this->get_theme_assets_url();

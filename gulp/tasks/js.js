@@ -11,7 +11,4 @@ module.exports = (gulp, config, plugins) => () => gulp.src(config.src.js)
         title: 'js:'
     }))
     .pipe(webpack(require('../webpack.config.js')))
-    .pipe(plugins.if(process.env.NODE_ENV === 'production', plugins.rename(path => {
-        path.extname = `.min${path.extname}`;
-    })))
     .pipe(gulp.dest(config.build.js));
