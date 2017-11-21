@@ -16,6 +16,10 @@ let loaders = [
 let plugins = [
     new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+        children: true,
+        minChunks: 2
     })
 ];
 
@@ -23,6 +27,7 @@ if (isProd) {
     loaders.push('eslint-loader');
     plugins.push(new webpack.optimize.UglifyJsPlugin({
         minimize: true,
+        comments: false,
         compress: {
             warnings: false
         }
@@ -32,7 +37,8 @@ if (isProd) {
 module.exports = {
     output: {
         path: require('path').resolve(config.src.js),
-        filename: 'common.js'
+        chunkFilename: `[name]${isProd ? '.min' : ''}.js`,
+        filename: `common${isProd ? '.min' : ''}.js`
     },
     externals: {
         jquery: 'jQuery'
