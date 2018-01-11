@@ -8,6 +8,7 @@
     <?php wp_head() ?>
 </head>
 <body <?php body_class( 'with-hovers' ) ?>>
+    <?php do_action( 'header' ) ?>
 	<div class="svg-sprite" style="display: none">
 	    <?php get_template_part( 'sprite' ) ?>
 	</div>

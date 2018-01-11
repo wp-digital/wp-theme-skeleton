@@ -190,6 +190,27 @@ class Initialization extends AbstractThemeInitialization
     }
 
     /**
+     * @param string $stylesheet
+     *
+     * @return string
+     */
+    public function add_filter_aws_lambda_critical_css_stylesheet( $stylesheet )
+    {
+        $stylesheet = str_replace( '../fonts/', $this->get_theme_assets_url() . '/built/fonts/', $stylesheet );
+
+        return function_exists( 'get_cloudfront_attachment_url' ) ? get_cloudfront_attachment_url( $stylesheet, true ) : $stylesheet;
+    }
+
+    public function add_action_aws_lambda_critical_css_printed()
+    {
+        add_filter( 'deferred_loading_styles', function () {
+            return [
+                'theme',
+            ];
+        } );
+    }
+
+    /**
      * @return array|string
      */
     public function add_filter_deferred_loading_scripts()
