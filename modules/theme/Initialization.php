@@ -196,7 +196,7 @@ class Initialization extends AbstractThemeInitialization
      */
     public function add_filter_aws_lambda_critical_css_stylesheet( $stylesheet )
     {
-        $stylesheet = str_replace( '../fonts/', $this->get_theme_assets_url() . '/built/fonts/', $stylesheet );
+        $stylesheet = str_replace( '../fonts/', $this->get_theme_assets_url() . '/build/fonts/', $stylesheet );
 
         return function_exists( 'get_cloudfront_attachment_url' ) ? get_cloudfront_attachment_url( $stylesheet, true ) : $stylesheet;
     }
