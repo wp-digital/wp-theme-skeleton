@@ -19,5 +19,5 @@ gulp.task('build', (() => {
     }
 })());
 gulp.task('rebuild', gulp.series('clean', 'build'));
-gulp.task('ws', gulp.parallel('watch', 'serve'));
+gulp.task('ws', gulp.parallel('watch', 'serve', 'html'));
 gulp.task('default', gulp.series('rebuild', 'ws'));
