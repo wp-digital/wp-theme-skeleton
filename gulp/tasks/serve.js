@@ -3,8 +3,8 @@ let browserSync = require('browser-sync').create();
 module.exports = (gulp, config, plugins) => () => {
     browserSync.init({
         server: {
-            baseDir: config.build.html,
-            directory: true
+            baseDir: config.build,
+            // directory: true
         },
         // proxy: {
         //     target: config.local

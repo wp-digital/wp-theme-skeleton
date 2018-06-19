@@ -7,6 +7,8 @@
     <meta name="theme-color" content="#000000"> <!-- @TODO: set theme color -->
     <?php wp_head() ?>
 </head>
-<body <?php body_class( 'with-hovers' ) ?>>
-    <?php do_action( 'header' ) ?>
-	<?php get_template_part( 'partials/sprite' );
+<body <?php body_class( 'with-hovers not-editor' ) ?>>
+    <div class="global-wrapper">
+	    <?php get_template_part( 'partials/sprite' ); ?>
+        <?php do_action( 'header' ) ?>
+            <header id="header"></header>
