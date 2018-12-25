@@ -8,7 +8,8 @@
     <?php wp_head() ?>
 </head>
 <body <?php body_class( 'with-hovers not-editor' ) ?>>
+    <?php do_action( 'header' ) ?>
     <div class="global-wrapper">
 	    <?php get_template_part( 'partials/sprite' ); ?>
-        <?php do_action( 'header' ) ?>
-            <header id="header"></header>
+
+            <header id="header">

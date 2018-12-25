@@ -1,0 +1,32 @@
+{
+    "name": "innocode-digital/wp-theme-skeleton",
+    "version": "2.0.0",
+    "description": "WordPress theme skeleton.",
+    "type": "project",
+    "license": "proprietary",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://wpackagist.org"
+        }
+    ],
+    "require": {
+        "wpmetabox/meta-box": "^4.15",
+        "vlucas/phpdotenv": "^2.5"
+    },
+    "extra": {
+        "installer-paths": {
+            "vendor/meta-box/{$name}/": ["vendor:meta-box"]
+        }
+    },
+    "authors": [
+        {
+            "name": "Innocode",
+            "email": "post@innocode.no",
+            "homepage": "https://innocode.com/"
+        }, {
+            "name": "Viktor Kuliebiakin",
+            "email": "viktor.kuliebiakin@innocode.no"
+        }
+    ]
+}

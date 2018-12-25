@@ -76,12 +76,16 @@ class Initialization extends AbstractThemeInitialization
     {
         add_theme_support( 'post-thumbnails', [ 'post', 'page' ] );
         add_theme_support( 'title-tag' );
+
         remove_action( 'wp_head', 'wp_generator' );
         remove_action( 'wp_head', 'wlwmanifest_link' );
         remove_action( 'wp_head', 'rsd_link' );
         remove_action( 'wp_head', 'rest_output_link_wp_head' );
         remove_action( 'wp_head', 'wp_oembed_add_discovery_links' );
         remove_action( 'wp_head', 'wp_shortlink_wp_head' );
+
+        remove_action( 'template_redirect', 'wp_shortlink_header', 11 );
+        remove_action( 'template_redirect', 'rest_output_link_header', 11 );
     }
 
     public function add_action_admin_bar_init()
@@ -235,6 +239,7 @@ class Initialization extends AbstractThemeInitialization
             remove_meta_box( 'dashboard_secondary', 'dashboard', 'normal' );
             remove_meta_box( 'dashboard_recent_comments', 'dashboard', 'normal' );
         }, 100 );
+
         add_action( 'add_meta_boxes', function () {
             foreach ( get_post_types() as $post_type ) {
                 remove_meta_box( 'commentsdiv', $post_type, 'normal' );
