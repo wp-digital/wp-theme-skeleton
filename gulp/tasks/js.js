@@ -1,14 +1,29 @@
-let webpack = require('webpack-stream');
+/* eslint-disable */
+const webpackStream = require('webpack-stream');
+const webpack4 = require('webpack');
 
-module.exports = (gulp, config, plugins) => () => gulp.src(config.src.js)
-    .pipe(plugins.plumber({
+module.exports = (gulp, config, plugins) => () =>
+  gulp
+    .src(config.src.js)
+    .pipe(
+      plugins.plumber({
         errorHandler: plugins.notify.onError(err => ({
-            title: 'js',
-            message: err.message
+          title: 'js',
+          message: err.message
         }))
-    }))
-    .pipe(plugins.debug({
+      })
+    )
+    .pipe(
+      plugins.debug({
         title: 'js:'
-    }))
-    .pipe(webpack(require('../webpack.config.js')))
+      })
+    )
+    .pipe(
+      webpackStream(
+        {
+          config: require('../webpack.config.js')
+        },
+        webpack4
+      )
+    )
     .pipe(gulp.dest(config.build.js));

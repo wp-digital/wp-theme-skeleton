@@ -1,6 +1,14 @@
 // import $ from 'jquery'; @TODO: uncomment if jQuery or remove if opposite
-import detectTouchSupport from "./modules/detectTouchSupport";
+import '@babel/polyfill';
+import detectTouchSupport from './modules/detectTouchSupport';
+import { person } from './modules/testModule';
+import App from './app/index.jsx';
+
+const someVar = 'var';
 
 document.addEventListener('DOMContentLoaded', () => {
-    detectTouchSupport();
+  global.console.log(person.name);
+  App();
+  console.log(someVar);
+  detectTouchSupport();
 });
