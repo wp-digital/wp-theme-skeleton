@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import http from '../modules/httpService';
 
 function wrapWithHoc(WrappedComponent) {
   return class WrappedWithHoc extends Component {
@@ -9,9 +10,8 @@ function wrapWithHoc(WrappedComponent) {
     };
 
     async componentDidMount() {
-      const response = await fetch('https://jsonplaceholder.typicode.com/photos/1');
-      const { thumbnailUrl: imageSrc } = await response.json();
-      console.log(imageSrc);
+      const { data } = await http.get('https://jsonplaceholder.typicode.com/photos/1');
+      const imageSrc = data.thumbnailUrl;
       this.setState({ superState: true, imageSrc });
     }
 
