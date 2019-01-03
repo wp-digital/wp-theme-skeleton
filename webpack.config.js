@@ -1,57 +1,64 @@
-let config = require('./config');
-let isProd = process.env.NODE_ENV === 'production';
+const path = require('path');
+const config = require('./config');
 
-let loaders = [
-    {
-        loader: 'babel-loader',
-        options: {
-            presets: [
-                ['env', {
-                    targets: {
-                        browsers: '> 2%'
-                    }
-                }]
-            ],
-            plugins: [
-                'transform-decorators-legacy',
-                'transform-object-rest-spread'
-            ],
-            env: {
-                production: {
-                    presets: [
-                        ['minify', {
-                            mangle: false
-                        }]
-                    ]
-                }
-            }
-        }
-    }
-];
+module.exports = (env, argv) => {
+  const isProd = argv.mode === 'production';
 
-if (isProd) {
-    loaders.push('eslint-loader');
-}
-
-module.exports = {
-    mode: process.env.NODE_ENV || 'development',
+  return {
+    mode: isProd ? 'production' : 'development',
+    entry: {
+      common: path.resolve(config.src.js),
+    },
     output: {
-        path: require('path').resolve(config.src.js),
-        filename: `common${isProd ? '.min' : ''}.js`
+      filename: `[name]${isProd ? '.min' : ''}.js`,
+      chunkFilename: `[name]${isProd ? '.min' : ''}.js`,
+      path: path.resolve(config.build.js),
     },
     resolve: {
-        extensions: ['.js', '.json', '.css']
+      extensions: ['.js', '.mjs', '.jsx', '.json', '.css'],
     },
     module: {
-        rules: [
+      rules: [
+        {
+          test: /\.m?jsx?$/,
+          exclude: /(node_modules|bower_components|jspm_packages)/,
+          use: [
+            'babel-loader',
             {
-                test: /\.jsx?$/,
-                exclude: /(node_modules|bower_components)/,
-                use: loaders
-            }, {
-                test: /\.css$/,
-                use: 'css-loader'
-            }
-        ]
-    }
+              loader: 'eslint-loader',
+              options: {
+                fix: true,
+                format: 'pretty',
+              },
+            },
+          ],
+        }, {
+          test: /\.css$/,
+          use: {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+            },
+          },
+        },
+      ],
+    },
+    optimization: {
+      splitChunks: {
+        cacheGroups: {
+          commons: {
+            chunks: 'all',
+            minChunks: 2,
+          },
+        },
+      },
+    },
+    watchOptions: {
+      ignored: /(node_modules|bower_components|jspm_packages)/,
+      poll: 1000,
+    },
+    externals: {
+      jquery: 'jQuery',
+    },
+  };
 };

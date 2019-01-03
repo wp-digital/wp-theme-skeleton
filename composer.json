@@ -16,7 +16,8 @@
     },
     "extra": {
         "installer-paths": {
-            "vendor/meta-box/{$name}/": ["vendor:meta-box"]
+            "vendor/meta-box/{$name}/": ["vendor:meta-box"],
+            "../../plugins/{$name}/": ["type:wordpress-plugin"]
         }
     },
     "authors": [
@@ -27,6 +28,13 @@
         }, {
             "name": "Viktor Kuliebiakin",
             "email": "viktor.kuliebiakin@innocode.no"
+        }, {
+            "name": "Vladilen Tsvetkov",
+            "email": "tini2n@gmail.com"
+        }, {
+            "name": "Mike Pinchuk"
+        }, {
+            "name": "Nikolay"
         }
     ]
 }
