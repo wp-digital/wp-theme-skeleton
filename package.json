@@ -27,7 +27,7 @@
   "contributors": [
     {
       "name": "Viktor Kuliebiakin",
-      "email": "viktor.kuliebiakin@innocode.no"
+      "email": "kuliebiakin@gmail.com"
     },
     {
       "name": "Vladilen Tsvetkov",
@@ -58,6 +58,7 @@
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.4",
     "browser-sync": "^2.26.3",
+    "css-loader": "^2.1.0",
     "del": "^3.0.0",
     "eslint": "^5.11.1",
     "eslint-config-airbnb": "^17.1.0",
@@ -84,6 +85,8 @@
     "imagemin-pngquant": "^6.0.1",
     "path": "^0.12.7",
     "require-dir": "^1.2.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
     "webpack": "^4.28.2",
     "webpack-stream": "^5.2.1",
     "yargs": "^12.0.5"

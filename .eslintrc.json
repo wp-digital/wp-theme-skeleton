@@ -11,6 +11,9 @@
         "jquery": true,
         "serviceworker": true
     },
+    "settings": {
+        "import/core-modules": ["jquery"]
+    },
     "rules": {
         "react/prop-types": 0
     }

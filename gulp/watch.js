@@ -7,5 +7,4 @@ module.exports = (gulp, config) => () => {
   );
   gulp.watch(config.watch.img, gulp.series('img'));
   gulp.watch(config.watch.sass, gulp.series('sass'));
-  gulp.watch(config.watch.js, gulp.series('js'));
 };

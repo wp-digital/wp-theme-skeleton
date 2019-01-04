@@ -23,8 +23,9 @@ module.exports = (env, argv) => {
           test: /\.m?jsx?$/,
           exclude: /(node_modules|bower_components|jspm_packages)/,
           use: [
-            'babel-loader',
             {
+              loader: 'babel-loader',
+            }, {
               loader: 'eslint-loader',
               options: {
                 fix: true,
@@ -33,13 +34,19 @@ module.exports = (env, argv) => {
             },
           ],
         }, {
-          test: /\.css$/,
-          use: {
-            loader: 'css-loader',
-            options: {
-              modules: true,
+          test: /\.s?[ca]ss$/,
+          use: [
+            {
+              loader: 'style-loader',
+            }, {
+              loader: 'css-loader',
+              options: {
+                modules: true,
+              },
+            }, {
+              loader: 'sass-loader',
             },
-          },
+          ],
         },
       ],
     },

@@ -94,7 +94,7 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ \"jquery\");\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/dom-ready */ \"./node_modules/@wordpress/dom-ready/build-module/index.js\");\n/* harmony import */ var _modules_detectTouchSupport__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/detectTouchSupport */ \"./assets/src/js/modules/detectTouchSupport.js\");\n // @TODO: uncomment if jQuery or remove if opposite\n\n\n\nObject(_wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(function () {\n  Object(_modules_detectTouchSupport__WEBPACK_IMPORTED_MODULE_2__[\"default\"])();\n  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.test');\n});\n\n//# sourceURL=webpack:///./assets/src/js/common.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/dom-ready */ \"./node_modules/@wordpress/dom-ready/build-module/index.js\");\n/* harmony import */ var _modules_detectTouchSupport__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/detectTouchSupport */ \"./assets/src/js/modules/detectTouchSupport.js\");\n// import $ from 'jquery'; // @TODO: uncomment if jQuery or remove if opposite\n\n\nObject(_wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(function () {\n  Object(_modules_detectTouchSupport__WEBPACK_IMPORTED_MODULE_1__[\"default\"])();\n});\n\n//# sourceURL=webpack:///./assets/src/js/common.js?");
 
 /***/ }),
 
@@ -131,17 +131,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/**\n * Specify a function to
 
 "use strict";
 eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nvar detectTouchEvents = {\n  update: function update() {\n    if (typeof window !== 'undefined') {\n      detectTouchEvents.hasSupport = 'ontouchstart' in window;\n      detectTouchEvents.browserSupportsApi = Boolean(window.TouchEvent);\n    }\n  }\n};\n\ndetectTouchEvents.update();\nexports.default = detectTouchEvents;\n\n//# sourceURL=webpack:///./node_modules/detect-touch-events/lib/index.js?");
-
-/***/ }),
-
-/***/ "jquery":
-/*!*************************!*\
-  !*** external "jQuery" ***!
-  \*************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = jQuery;\n\n//# sourceURL=webpack:///external_%22jQuery%22?");
 
 /***/ })
 
