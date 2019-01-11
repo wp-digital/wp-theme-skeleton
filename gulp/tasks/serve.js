@@ -1,6 +1,7 @@
+/* eslint import/no-extraneous-dependencies: 0 */
 const browserSync = require('browser-sync').create();
 
-module.exports = (gulp, config, plugins) => () => {
+module.exports = (gulp, config) => () => {
   browserSync.init({
     server: {
       baseDir: config.build,

@@ -1,0 +1,32 @@
+rules:
+  class-name-format:
+    - 1
+    -
+      convention: hyphenatedbem
+  function-name-format:
+    - 1
+    -
+      allow-leading-underscore: false
+      convention: hyphenatedlowercase
+  max-file-line-count: 500
+  max-line-length: 100
+  nesting-depth: 5
+  no-color-literals: 0
+  no-debug: 0
+  no-important: 0
+  no-qualifying-elements: 0
+  no-transition-all: 0
+  no-url-domains: 0
+  no-vendor-prefixes: 0
+  no-warn: 0
+  placeholder-in-extend: 0
+  placeholder-name-format:
+    - 1
+    -
+      allow-leading-underscore: false
+      convention: hyphenatedlowercase
+  variable-name-format:
+    - 1
+    -
+      allow-leading-underscore: false
+      convention: hyphenatedlowercase

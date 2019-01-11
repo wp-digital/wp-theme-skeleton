@@ -1,3 +1,4 @@
+/* eslint import/no-extraneous-dependencies: 0 */
 const autoprefixer = require('autoprefixer');
 
 module.exports = (gulp, config, plugins) => () => {
@@ -18,7 +19,6 @@ module.exports = (gulp, config, plugins) => () => {
     .pipe(
       plugins.postcss([
         autoprefixer({
-          browsers: ['> 1%', 'last 5 versions', 'Firefox ESR'],
           remove: false,
         }),
       ]),

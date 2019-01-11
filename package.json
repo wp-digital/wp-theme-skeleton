@@ -85,6 +85,8 @@
     "imagemin-pngquant": "^6.0.1",
     "path": "^0.12.7",
     "require-dir": "^1.2.0",
+    "sass-lint": "^1.12.1",
+    "sass-lint-auto-fix": "^0.15.1",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "webpack": "^4.28.2",

@@ -1,3 +1,4 @@
+/* eslint import/no-extraneous-dependencies: 0 */
 const jpegoptim = require('imagemin-jpegoptim');
 const pngquant = require('imagemin-pngquant');
 const imageminPngcrush = require('imagemin-pngcrush');
@@ -30,20 +31,15 @@ module.exports = (gulp, config, plugins) => () => gulp
         plugins: [
           {
             optimizationLevel: 3,
-          },
-          {
+          }, {
             progessive: true,
-          },
-          {
+          }, {
             interlaced: true,
-          },
-          {
+          }, {
             removeViewBox: false,
-          },
-          {
+          }, {
             removeUselessStrokeAndFill: false,
-          },
-          {
+          }, {
             cleanupIDs: false,
           },
         ],
