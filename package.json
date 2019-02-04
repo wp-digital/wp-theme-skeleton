@@ -35,7 +35,7 @@
     "detect-touch-events": "^2.0.1",
     "eslint": "^4.10.0",
     "eslint-loader": "^1.9.0",
-    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp": "^4.0.0",
     "gulp-cssmin": "^0.2.0",
     "gulp-debug": "^3.1.0",
     "gulp-file-include": "^1.2.0",
