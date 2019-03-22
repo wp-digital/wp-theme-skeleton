@@ -13,221 +13,208 @@ $content-h5-lh: $default-line-height
 $content-h6-fz: 16px
 $content-h6-lh: 24px
 
-%h1    
-    font-family: $font-title
-    font-size: $content-h1-fz
-    line-height: $content-h1-lh
-    color: $black
-    font-weight: 700
-    margin-bottom: 13px 
-    text-transform: uppercase
-    text-align: center
-%h2        
-    font-family: $font-title
-    font-size: $content-h2-fz
-    line-height: $content-h2-lh
-    color: $black
-    font-weight: 700
-    margin-top: 12px
-    margin-bottom: 48px
-    text-transform: uppercase 
-    text-align: center
+%h1
+  margin-bottom: 13px
+  text-align: center
+  text-transform: uppercase
+  line-height: $content-h1-lh
+  color: $black
+  font-family: $font-title
+  font-size: $content-h1-fz
+  font-weight: 700
+
+%h2
+  margin-top: 12px
+  margin-bottom: 48px
+  text-align: center
+  text-transform: uppercase
+  line-height: $content-h2-lh
+  color: $black
+  font-family: $font-title
+  font-size: $content-h2-fz
+  font-weight: 700
+
 %h3
-    font-size: $content-h3-fz
-    line-height: $content-h3-lh
-    font-weight: 700 
-    margin-bottom: $default-margin
-    text-transform: uppercase
+  margin-bottom: $default-margin
+  text-transform: uppercase
+  line-height: $content-h3-lh
+  font-size: $content-h3-fz
+  font-weight: 700
+
 %h4
-    font-family: $font-content-serif
-    font-size: $content-h4-fz
-    line-height: $content-h4-lh
-    color: $black
-    font-weight: 700
-    font-style: italic
-    margin-bottom: 66px
-%h5       
-    font-size: $content-h5-fz
-    line-height: $content-h5-lh
-    font-weight: 700
-    margin-bottom: $default-margin 
-%h6        
-    font-size: $content-h6-fz
-    line-height: $content-h6-lh
-    font-weight: 700
-    margin-bottom: $default-margin 
+  margin-bottom: 66px
+  line-height: $content-h4-lh
+  color: $black
+  font-family: $font-content-serif
+  font-size: $content-h4-fz
+  font-weight: 700
+  font-style: italic
+
+%h5
+  margin-bottom: $default-margin
+  line-height: $content-h5-lh
+  font-size: $content-h5-fz
+  font-weight: 700
+
+%h6
+  margin-bottom: $default-margin
+  line-height: $content-h6-lh
+  font-size: $content-h6-fz
+  font-weight: 700
+
 %link
-    color: $white
-    text-decoration: underline
-    +hover
-        text-decoration: none
+  text-decoration: underline
+  color: $white
+
 %dl
-    color: $black
-    font-size: 14px
-    line-height: 22px
-    font-style: normal
-    opacity: 0.3
-    font-weight: 400
-    text-transform: uppercase
-    display: flex
-    flex-wrap: wrap
-    justify-content: center
-    margin-bottom: 30px
-    +breakpoint-max(767)
-        font-size: 10px
-        line-height: 15px
-        margin-bottom: 5px
-    dt
-        margin-right: 4px
-        +breakpoint-max(767)
-            margin-bottom: 7px
-    dd
-        font-weight: 700
-        +breakpoint-max(767)
-            margin-bottom: 7px
-    dd:not(:last-child)
-        margin-right: 20px
+  display: flex
+  flex-wrap: wrap
+  justify-content: center
+  opacity: 0.3
+  margin-bottom: 30px
+  text-transform: uppercase
+  line-height: 22px
+  color: $black
+  font-size: 14px
+  font-weight: 400
+  font-style: normal
 
-h1   
-    @extend %h1
-h2   
-    @extend %h2
+  dt
+    margin-right: 4px
 
-    
+  dd
+    font-weight: 700
+
+  dd:not(:last-child)
+    margin-right: 20px
+
 .content,
-#content,
 %content
-    word-break: break-word 
-    word-wrap: break-word
-    text-align: justify
-    color: $text-clr
-    font-family: $font-content
-    font-size: $default-font-size
-    line-height: $default-line-height
-    +breakpoint-max(767)
-        font-size: $mobile-font-size
-        line-height: $mobile-line-height
-    h3   
-        @extend %h3
-    h4   
-        @extend %h4
-    h5   
-        @extend %h5
-    h6   
-        @extend %h6 
+  text-align: justify
+  line-height: $default-line-height
+  color: $text-clr
+  font-family: $font-content
+  font-size: $default-font-size
+  word-break: break-word
+  word-wrap: break-word
 
-    hr
+  hr
+    display: block
+    margin: $default-margin 0
+    outline: none
+    border: 0
+    background: $text-clr
+    padding: 0
+    height: 1px
+
+  p
+    margin-bottom: $default-margin
+
+  .button
+    margin-bottom: $default-margin
+
+  ul
+    margin: 0
+    margin-bottom: $default-margin
+    padding: 0
+
+    li
+      position: relative
+      padding-left: 20px
+
+      &::before
         display: block
-        height: 1px
-        background: $text-clr
-        border: none
-        outline: none
-        margin: $default-margin 0
-        padding: 0
+        position: absolute
+        top: 10px
+        left: 0
+        opacity: 0.5
+        border-radius: 50%
+        background-color: $black
+        width: 6px
+        height: 6px
+        content: ''
 
-    p
-        margin-bottom: $default-margin
-        +breakpoint-max(767)
-            margin-bottom: 15px
-    a:not(.button)
-        @extend %link
+  ol
+    margin: 0
+    margin-bottom: $default-margin
+    padding: 0
+    list-style-type: none
 
-    .button
-        margin-bottom: $default-margin
+    li
+      position: relative
+      padding-left: 20px
+      counter-increment: step-counter
 
-    .excerpt
-        @extend %h4
-
-    ul
-        padding: 0
-        margin: 0
-        margin-bottom: $default-margin
-        li
-            position: relative
-            padding-left: 20px
-            &:before
-                content: '' 
-                display: block
-                width: 6px
-                height: 6px
-                border-radius: 50%
-                background-color: $black
-                opacity: 0.5
-                position: absolute
-                left: 0
-                top: 10px
-    ol
-        padding: 0
-        margin: 0
-        margin-bottom: $default-margin
-        list-style-type: none
-        li
-            position: relative
-            padding-left: 20px
-            counter-increment: step-counter
-            &:before
-                content: counter(step-counter)'.'
-                display: block
-                color: $black
-                opacity: 0.7
-                position: absolute
-                left: 0
-    i, 
-    em
-        font-style: italic
-    strong, 
-    b
-        font-weight: bold
-    sup, sub
-        font-size: 75%
-        line-height: 0
-        position: relative
-        vertical-align: baseline
-    sup
-        top: -0.5em
-    sub
-        bottom: -0.25em
-                
-    table
-        width: 100%
-        margin-bottom: $default-margin
-    th
-        font-weight: 700
-    td, th
-        padding: 5px 10px
-        border: 1px solid $black
-
-    .hidden
-        +breakpoint-max(767)
-            display: none
-    img
-        max-width: 100%
-        height: auto
-    dl
-        @extend %dl
-        text-align: left
-        justify-content: flex-start
-    pre
-        white-space: normal
-
-    .alignnone
-        margin: $default-line-height 0 
-
-    .aligncenter
+      &::before
         display: block
-        margin: $default-line-height auto
-        clear: both
+        position: absolute
+        left: 0
+        opacity: 0.7
+        color: $black
+        content: counter(step-counter) '.'
 
-    .alignright
-        float: right
-        clear: right
-        margin: $default-line-height 0 $default-line-height $default-line-height
+  i,
+  em
+    font-style: italic
 
-    .alignleft
-        float: left
-        clear: left
-        margin: $default-line-height $default-line-height $default-line-height 0
-            
-    img.alignnone
-        display: inline-block
-        vertical-align: middle
+  strong,
+  b
+    font-weight: bold
+
+  sup,
+  sub
+    position: relative
+    vertical-align: baseline
+    line-height: 0
+    font-size: 75%
+
+  sup
+    top: -0.5em
+
+  sub
+    bottom: -0.25em
+
+  table
+    margin-bottom: $default-margin
+    width: 100%
+
+  th
+    font-weight: 700
+
+  td,
+  th
+    border: 1px solid #000
+    padding: 5px 10px
+
+  img
+    max-width: 100%
+    height: auto
+
+  dl
+    justify-content: flex-start
+    text-align: left
+
+  pre
+    white-space: normal
+
+  .alignnone
+    margin: $default-line-height 0
+
+  .aligncenter
+    display: block
+    clear: both
+    margin: $default-line-height auto
+
+  .alignright
+    float: right
+    clear: right
+    margin: $default-line-height 0 default-line-height default-line-height
+
+  .alignleft
+    float: left
+    clear: left
+    margin: $default-line-height default-line-height default-line-height 0
+
+  img.alignnone
+    display: inline-block
+    vertical-align: middle

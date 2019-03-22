@@ -1,3 +1,8 @@
+files:
+  ignore:
+    - node_modules/**/*
+    - bower_components/**/*
+    - jspm_packages/**/*
 rules:
   class-name-format:
     - 1
@@ -8,9 +13,22 @@ rules:
     -
       allow-leading-underscore: false
       convention: hyphenatedlowercase
-  max-file-line-count: 500
-  max-line-length: 100
-  nesting-depth: 5
+  max-file-line-count:
+    - 1
+    -
+      length: 500
+  max-line-length:
+    - 1
+    -
+      length: 100
+  leading-zero:
+    - 1
+    -
+      include: true
+  nesting-depth:
+    - 1
+    -
+      max-depth: 5
   no-color-literals: 0
   no-debug: 0
   no-important: 0
@@ -25,6 +43,10 @@ rules:
     -
       allow-leading-underscore: false
       convention: hyphenatedlowercase
+  property-sort-order:
+    - 1
+    -
+      order: concentric
   variable-name-format:
     - 1
     -

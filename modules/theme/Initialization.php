@@ -295,7 +295,7 @@ class Initialization extends AbstractThemeInitialization
             'theme-print',
             "$assets_url/build/css/print$suffix.css",
             [],
-            null,
+            false,
             'print'
         );
     }

@@ -1,36 +1,36 @@
 html
-    box-sizing: border-box
+  box-sizing: border-box
+  margin: 0 !important
+  padding: 0 !important
+  height: 100%
 
 *
+  box-sizing: inherit
+
+  &::before,
+  &::after
     box-sizing: inherit
-    &:before,
-    &:after
-        box-sizing: inherit
 
-html
-    height: 100%
-    margin: 0 !important
-    padding: 0 !important
+body
+  background: #000
 
-body.not-editor
+  &.not-editor
     display: flex
     flex-direction: column
-    height: 100%
+    background-color: $body-clr
     min-width: 320px
-    word-break: break-word 
+    height: 100%
+    line-height: $default-line-height
+    word-break: break-word
     word-wrap: break-word
     color: $text-clr
-    background-color: $body-clr
     font-family: $font-content
     font-size: $default-font-size
-    line-height: $default-line-height
-    +breakpoint-max(767)
-        font-size: $mobile-font-size
-        line-height: $mobile-line-height
 
 .hide
-    display: none !important
+  display: none !important
 
-input::-ms-clear, 
-input::-ms-reveal
+input
+  &::-ms-clear,
+  &::-ms-reveal
     display: none

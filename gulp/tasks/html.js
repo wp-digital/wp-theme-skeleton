@@ -8,12 +8,7 @@ module.exports = (gulp, config, plugins) => () => gulp
       })),
     }),
   )
-  .pipe(
-    plugins.fileInclude({
-      prefix: '@@',
-      basepath: '@file',
-    }),
-  )
+  .pipe(plugins.fileInclude())
   .pipe(
     plugins.debug({
       title: 'html:',

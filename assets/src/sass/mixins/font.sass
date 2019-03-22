@@ -1,10 +1,10 @@
 =font($name, $nameInFolder, $weight: 'regular', $style: normal)
     $dist: '../fonts/' + $nameInFolder
     @font-face
-        font-family: $name        
+        font-family: $name
+        font-style: $style
         src: url("#{$dist}.eot")
-        src: url("#{$dist}.eot?#iefix") format('embedded-opentype'), url("#{$dist}.woff") format('woff'), url("#{$dist}.ttf") format('truetype'), url("#{$dist}.svg") format('svg')
-        
+
         @if $weight == "thin"
             font-weight: 100
         @else if $weight == "extralight" or $weight == "ultralight"
@@ -25,8 +25,8 @@
             font-weight: 900
         @else
             font-weight: $weight
-        
-        font-style: $style
+
+        src: url("#{$dist}.eot?#iefix") format('embedded-opentype'), url("#{$dist}.woff") format('woff'), url("#{$dist}.ttf") format('truetype'), url("#{$dist}.svg") format('svg')
 
 
 

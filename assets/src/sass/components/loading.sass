@@ -1,38 +1,30 @@
-@keyframes loading
-	0%
-		transform: rotate(0deg)
-	100%
-		transform: rotate(360deg)
-
 .loading
-	position: relative
-	&:before
-		content: '' 
-		position: absolute
-		z-index: 1000000
-		left: 0
-		right: 0
-		top: 0
-		bottom: 0
-		background-color: $body-clr
-		opacity: 0.9
-	&:after
-		content: ""
-		position: absolute
-		z-index: 10000001
-		left: 50%
-		top: 50%
-		margin: -25px 0 0 -25px
-		display: block
-		width: 50px
-		height: 50px
-		box-sizing: border-box 
-		border-radius: 50%
-		border-width: 3px
-		border-style: solid
-		border-color: $text-clr transparent $text-clr transparent
-		animation: loading 1s infinite linear
+  position: relative
 
+  &::before
+    position: absolute
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+    opacity: 0.9
+    z-index: 1000000
+    background-color: $body-clr
+    content: ''
 
-
-		
+  &::after
+    display: block
+    position: absolute
+    top: 50%
+    left: 50%
+    animation: loading 1s infinite linear
+    z-index: 10000001
+    margin: -25px 0 0 -25px
+    border-width: 3px
+    border-style: solid
+    border-radius: 50%
+    border-color: $text-clr transparent text-clr transparent
+    width: 50px
+    height: 50px
+    content: ""
+    box-sizing: border-box

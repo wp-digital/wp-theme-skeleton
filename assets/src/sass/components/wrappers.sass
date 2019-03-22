@@ -1,48 +1,28 @@
 .global-wrapper
-    flex: 1 0 auto
-    height: 100%
-    min-width: 320px
-    box-sizing: border-box
-    position: relative
+  position: relative
+  flex: 1 0 auto
+  min-width: 320px
+  height: 100%
+  box-sizing: border-box
 
 .main-wrapper
-    position: relative
-    flex: 1 0 auto
-    width: 100%
-    box-sizing: border-box
-    overflow: hidden
-    +breakpoint-max(1200)
-        padding-top: 50px
-    +bodyclass(with-partner)
-        padding-top: 140px
-        +breakpoint-max(1200)
-            padding-top: 110px 
-        +breakpoint-max(767)
-            padding-top: 110px
-    +bodyclass(search-results, search-no-results)
-        padding-top: 220px
-        +breakpoint-max(1200)
-            padding-top: 150px
+  position: relative
+  flex: 1 0 auto
+  width: 100%
+  overflow: hidden
+  box-sizing: border-box
 
 .wrapper
-    max-width: $wrapper-outer
-    margin: 0 auto
-    padding-left: $wrapper-padding
-    padding-right: $wrapper-padding
-    box-sizing: border-box
+  margin: 0 auto
+  padding-right: $wrapper-padding
+  padding-left: $wrapper-padding
+  max-width: $wrapper-outer
+  box-sizing: border-box
+
 .wrapper-thin
-    @extend .wrapper
-    padding-left: $wrapper-padding + 80px
-    padding-right: $wrapper-padding + 80px
-    +breakpoint-max(767)
-        padding-left: $wrapper-padding
-        padding-right: $wrapper-padding
+  padding-right: $wrapper-padding + 80px
+  padding-left: $wrapper-padding + 80px
 
 #content
-    @extend .wrapper-thin
-    padding-top: 40px
-    padding-bottom: 40px
-    +breakpoint-max(767)
-        padding-top: 20px
-        padding-bottom: 20px
-        
+  padding-top: 40px
+  padding-bottom: 40px

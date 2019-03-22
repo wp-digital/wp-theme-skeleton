@@ -1,20 +1,22 @@
 {
-    "extends": "airbnb",
-    "parser": "babel-eslint",
-    "env": {
-        "browser": true,
-        "node": true,
-        "commonjs": true,
-        "es6": true,
-        "worker": true,
-        "amd": true,
-        "jquery": true,
-        "serviceworker": true
-    },
-    "settings": {
-        "import/core-modules": ["jquery"]
-    },
-    "rules": {
-        "react/prop-types": 0
-    }
+  "plugins": ["prettier"],
+  "extends": ["airbnb", "prettier"],
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "node": true,
+    "commonjs": true,
+    "es6": true,
+    "worker": true,
+    "amd": true,
+    "jquery": true,
+    "serviceworker": true
+  },
+  "settings": {
+    "import/core-modules": ["jquery"]
+  },
+  "rules": {
+    "prettier/prettier": "error",
+    "react/prop-types": 0
+  }
 }
