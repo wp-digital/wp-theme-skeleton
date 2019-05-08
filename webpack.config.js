@@ -1,11 +1,14 @@
 const fs = require('fs');
-const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const IgnoreEmitPlugin = require('ignore-emit-webpack-plugin');
-const SassLintPlugin = require('sass-lint-webpack');
-const StyleLintPlugin = require('stylelint-webpack-plugin');
-const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const notifier = require('node-notifier');
+const path = require('path');
+const webpack = require('webpack');
+const CleanPlugin = require('clean-webpack-plugin');
+const IgnoreEmitPlugin = require('ignore-emit-webpack-plugin');
+const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const StyleLintPlugin = require('stylelint-bare-webpack-plugin');
+const WebpackAssetsManifest = require('webpack-assets-manifest');
+
 const config = require('./config');
 
 const getEntry = dirs =>
@@ -33,29 +36,35 @@ const getEntry = dirs =>
       ...dirEntries,
     };
   }, {});
+
 const cssBuild = config.build.css.replace(`${config.build.dir}/`, '');
-const ignoreCssEmitRegex = new RegExp(`${cssBuild}/.+(\\.min)?\\.js$`);
+const ignoreCssEmitRegex = new RegExp(`${cssBuild}/.+(\\.min)?\\.js(\\.map)?$`);
 const imgBuild = config.build.img.replace(`${config.build.dir}/`, '');
-const ignoreImgEmitRegex = new RegExp(`${imgBuild}/.+(\\.min)?\\.js$`);
-const excludeExternalPackagesRegex = /(node_modules|bower_components|jspm_packages)/;
+const ignoreImgEmitRegex = new RegExp(`${imgBuild}/.+(\\.min)?\\.js(\\.map)?$`);
+const externalPackagesRegex = /(node_modules|bower_components|jspm_packages)/;
 
 module.exports = (env, argv) => {
   const isProd = argv.mode === 'production';
+  const mode = isProd ? 'production' : 'development';
+
+  process.env.BABEL_ENV = mode;
+  process.env.NODE_ENV = mode;
 
   return {
-    mode: isProd ? 'production' : 'development',
-    devtool: !isProd ? 'eval-source-map' : false,
+    mode,
+    devtool: !isProd ? 'cheap-module-source-map' : false,
     entry: getEntry([
       [config.src.js, config.build.js],
       [config.src.sass, config.build.css],
       [config.src.img, config.build.img],
     ]),
     output: {
-      filename: `[name]${isProd ? '.min' : ''}.js`,
+      filename: `[name]${isProd ? '.[hash].min' : ''}.js`,
       chunkFilename: `[id]${isProd ? '.[chunkhash].min' : ''}.js`,
       path: path.resolve(config.build.dir),
     },
     resolve: {
+      modules: [path.resolve(config.src.dir), 'node_modules'],
       extensions: [
         '.js',
         '.mjs',
@@ -72,19 +81,53 @@ module.exports = (env, argv) => {
       ],
     },
     plugins: [
+      new CleanPlugin(),
       new MiniCssExtractPlugin({
-        filename: `[name]${isProd ? '.min' : ''}.css`,
+        filename: `[name]${isProd ? '.[hash].min' : ''}.css`,
         chunkFilename: `[id]${isProd ? '.[chunkhash].min' : ''}.css`,
+        sourceMap: !isProd,
       }),
       new IgnoreEmitPlugin([ignoreCssEmitRegex, ignoreImgEmitRegex]),
-      // new StyleLintPlugin({
-      //   context: path.resolve(config.src.dir),
-      //   syntax: 'sass',
-      //   fix: true,
-      //   failOnError: !argv.watch,
-      // }),
-      new SassLintPlugin(),
-      new FriendlyErrorsWebpackPlugin({
+      new StyleLintPlugin({
+        files: path.join(config.src.sass, '**/*.s?(c|a)ss'),
+        syntax: 'sass',
+        // We need to wait for a better times to set "fix" option.
+        // Currently it has a lot of issues, especially with .sass files.
+        fix: false,
+        failOnError: !argv.watch,
+      }),
+      new webpack.ProvidePlugin({
+        $: 'jquery',
+        jQuery: 'jquery',
+      }),
+      new webpack.HashedModuleIdsPlugin(),
+      new WebpackAssetsManifest({
+        output: 'manifest.json.php',
+        apply(manifest) {
+          /* eslint-disable no-param-reassign */
+          manifest.toString = () => `<?php return json_decode( '${JSON.stringify(
+            manifest,
+            manifest.options.replacer,
+            manifest.options.space
+          ) || '{}'}', true );
+`;
+        },
+        transform(assets) {
+          return {
+            ...Object.keys(assets).reduce((entries, entry) => {
+              if (entry.toLowerCase().endsWith('.map')) {
+                return entries;
+              }
+
+              return {
+                ...entries,
+                [entry]: `${config.build.dir}/${assets[entry]}`,
+              };
+            }, {}),
+          };
+        },
+      }),
+      new FriendlyErrorsPlugin({
         onErrors(severity, errors) {
           if (severity !== 'error') {
             return;
@@ -107,7 +150,7 @@ module.exports = (env, argv) => {
           oneOf: [
             {
               test: /\.m?jsx?$/,
-              exclude: excludeExternalPackagesRegex,
+              exclude: externalPackagesRegex,
               use: [
                 {
                   loader: 'babel-loader',
@@ -185,7 +228,7 @@ module.exports = (env, argv) => {
                   loader: 'file-loader',
                   options: {
                     outputPath: imgBuild,
-                    name: '[name].[ext]',
+                    name: `[name]${isProd ? '.[hash]' : ''}.[ext]`,
                   },
                 },
                 {
@@ -223,11 +266,17 @@ module.exports = (env, argv) => {
             chunks: 'all',
             minChunks: 2,
           },
+          vendors: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendor',
+            chunks: 'all',
+            priority: -10,
+          },
         },
       },
     },
     watchOptions: {
-      ignored: excludeExternalPackagesRegex,
+      ignored: externalPackagesRegex,
       poll: 1000,
     },
     externals: {

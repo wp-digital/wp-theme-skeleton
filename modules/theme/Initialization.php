@@ -21,9 +21,9 @@ class Initialization extends AbstractThemeInitialization
 	public function register_image_sizes()
 	{
         foreach ( static::$_image_sizes as $key => $data ) {
-            $width  = isset( $data[0] ) ? $data[0] : 0;
+            $width = isset( $data[0] ) ? $data[0] : 0;
             $height = isset( $data[1] ) ? $data[1] : 0;
-            $crop   = isset( $data[2] ) ? $data[2] : false;
+            $crop = isset( $data[2] ) ? $data[2] : false;
 
             add_image_size( $key, $width, $height, $crop );
             add_image_size( "{$key}2x", $width * 2, $height * 2, $crop );
@@ -67,9 +67,8 @@ class Initialization extends AbstractThemeInitialization
     public function add_action_admin_enqueue_scripts()
     {
         $assets_url = $this->get_theme_assets_url();
-        $suffix = Functions::get_assets_suffix();
 
-        wp_enqueue_style( 'theme-admin', "$assets_url/build/css/admin$suffix.css" );
+        wp_enqueue_style( 'theme-admin', "$assets_url/build/css/admin.css" );
     }
 
     public function add_action_after_setup_theme()
@@ -96,9 +95,8 @@ class Initialization extends AbstractThemeInitialization
     public function add_action_login_enqueue_scripts()
     {
         $assets_url = $this->get_theme_assets_url();
-        $suffix = Functions::get_assets_suffix();
 
-        wp_enqueue_style( 'theme-login', "$assets_url/build/css/login$suffix.css" );
+        wp_enqueue_style( 'theme-login', "$assets_url/build/css/login.css" );
     }
 
     public function add_action_admin_menu()
@@ -128,14 +126,18 @@ class Initialization extends AbstractThemeInitialization
         }
     }
 
+    public function add_action_wp_head()
+    {
+        echo "<script>document.getElementsByTagName('html')[0].className = document.getElementsByTagName('html')[0].className.replace(/\b(no-js)\b/,'');</script>";
+    }
+
     public function add_action_wp_footer()
     {
         echo "<noscript>
             <div style=\"position: absolute; bottom: 0; left: 0; right: 0; padding: 10px 20px; background-color: #FFF; text-align: center; color: #000; z-index: 999; border-top: 1px solid #000;\">
                 " . __( 'JavaScript is disabled on your browser. Please enable JavaScript or upgrade to a JavaScript-capable browser to use this site.', TEXT_DOMAIN ) . "
             </div>
-        </noscript>
-        <script>document.getElementsByTagName('html')[0].className = document.getElementsByTagName('html')[0].className.replace(/\b(no-js)\b/,'');</script>";
+        </noscript>";
     }
 
     /**
@@ -285,15 +287,14 @@ class Initialization extends AbstractThemeInitialization
         }
 
         $assets_url = $this->get_theme_assets_url();
-        $suffix = Functions::get_assets_suffix();
 
         wp_enqueue_style(
             'theme',
-            "$assets_url/build/css/screen$suffix.css"
+            "$assets_url/build/css/screen.css"
         );
         wp_enqueue_style(
             'theme-print',
-            "$assets_url/build/css/print$suffix.css",
+            "$assets_url/build/css/print.css",
             [],
             false,
             'print'
@@ -303,13 +304,12 @@ class Initialization extends AbstractThemeInitialization
     protected function _enqueue_scripts()
     {
         $assets_url = $this->get_theme_assets_url();
-        $suffix = Functions::get_assets_suffix();
 
         // We add 'defer' attribute, so no need to load script in footer.
         // Probably browser can load it faster if it will be placed in header with 'defer'.
         wp_enqueue_script(
             'theme',
-            "$assets_url/build/js/common$suffix.js",
+            "$assets_url/build/js/common.js",
             []
         );
     }

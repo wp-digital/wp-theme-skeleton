@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f6af01ded6c7003f513cb4d8294aa35c",
+    "content-hash": "85ff95419ddee08531ea9dfabebbd306",
     "packages": [
         {
             "name": "composer/installers",
@@ -127,13 +127,41 @@
             "time": "2018-08-27T06:10:37+00:00"
         },
         {
+            "name": "innocode-digital/wp-theme-assets",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/innocode-digital/wp-theme-assets.git",
+                "reference": "94919b164cb2cef7bc00c90aee9cfb376d1038f5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/innocode-digital/wp-theme-assets/zipball/94919b164cb2cef7bc00c90aee9cfb376d1038f5",
+                "reference": "94919b164cb2cef7bc00c90aee9cfb376d1038f5",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Innocode\\WPThemeAssets\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Library for WordPress theme assets files.",
+            "support": {
+                "source": "https://github.com/innocode-digital/wp-theme-assets/tree/master",
+                "issues": "https://github.com/innocode-digital/wp-theme-assets/issues"
+            },
+            "time": "2019-05-08T09:46:04+00:00"
+        },
+        {
             "name": "meta-box/mb-revision",
             "version": "master",
             "dist": {
                 "type": "zip",
-                "url": "https://metabox.io/?action=download&product=mb-revision&api_key=33c17f3f0a8f6ebbdd359f1901ba46d5",
-                "reference": null,
-                "shasum": null
+                "url": "https://metabox.io/?action=download&product=mb-revision&api_key=33c17f3f0a8f6ebbdd359f1901ba46d5"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -141,21 +169,80 @@
             "type": "wordpress-plugin"
         },
         {
-            "name": "vlucas/phpdotenv",
-            "version": "v2.5.2",
+            "name": "symfony/polyfill-ctype",
+            "version": "v1.11.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/vlucas/phpdotenv.git",
-                "reference": "cfd5dc225767ca154853752abc93aeec040fcf36"
+                "url": "https://github.com/symfony/polyfill-ctype.git",
+                "reference": "82ebae02209c21113908c229e9883c419720738a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/cfd5dc225767ca154853752abc93aeec040fcf36",
-                "reference": "cfd5dc225767ca154853752abc93aeec040fcf36",
+                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/82ebae02209c21113908c229e9883c419720738a",
+                "reference": "82ebae02209c21113908c229e9883c419720738a",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.9"
+                "php": ">=5.3.3"
+            },
+            "suggest": {
+                "ext-ctype": "For best performance"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.11-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Polyfill\\Ctype\\": ""
+                },
+                "files": [
+                    "bootstrap.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                },
+                {
+                    "name": "Gert de Pagter",
+                    "email": "BackEndTea@gmail.com"
+                }
+            ],
+            "description": "Symfony polyfill for ctype functions",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "ctype",
+                "polyfill",
+                "portable"
+            ],
+            "time": "2019-02-06T07:57:58+00:00"
+        },
+        {
+            "name": "vlucas/phpdotenv",
+            "version": "v2.6.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vlucas/phpdotenv.git",
+                "reference": "2a7dcf7e3e02dc5e701004e51a6f304b713107d5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/2a7dcf7e3e02dc5e701004e51a6f304b713107d5",
+                "reference": "2a7dcf7e3e02dc5e701004e51a6f304b713107d5",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.9",
+                "symfony/polyfill-ctype": "^1.9"
             },
             "require-dev": {
                 "phpunit/phpunit": "^4.8.35 || ^5.0"
@@ -163,7 +250,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.5-dev"
+                    "dev-master": "2.6-dev"
                 }
             },
             "autoload": {
@@ -188,20 +275,20 @@
                 "env",
                 "environment"
             ],
-            "time": "2018-10-30T17:29:25+00:00"
+            "time": "2019-01-29T11:11:52+00:00"
         },
         {
             "name": "wpmetabox/meta-box",
-            "version": "4.15.9",
+            "version": "4.17.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wpmetabox/meta-box.git",
-                "reference": "fc79796a1a5295ea26043bbecc96d214412f28f2"
+                "reference": "d722632101a8dd5802ae35b54dd52442e6cac9d9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wpmetabox/meta-box/zipball/fc79796a1a5295ea26043bbecc96d214412f28f2",
-                "reference": "fc79796a1a5295ea26043bbecc96d214412f28f2",
+                "url": "https://api.github.com/repos/wpmetabox/meta-box/zipball/d722632101a8dd5802ae35b54dd52442e6cac9d9",
+                "reference": "d722632101a8dd5802ae35b54dd52442e6cac9d9",
                 "shasum": ""
             },
             "type": "library",
@@ -233,14 +320,15 @@
                 "wordpress-plugin",
                 "wp-admin"
             ],
-            "time": "2018-12-12T10:35:33+00:00"
+            "time": "2019-04-09T02:27:33+00:00"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "meta-box/mb-revision": 20
+        "meta-box/mb-revision": 20,
+        "innocode-digital/wp-theme-assets": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

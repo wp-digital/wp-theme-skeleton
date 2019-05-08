@@ -1,39 +1,51 @@
-.wp-caption
-  display: block
-  opacity: 1
-  margin-bottom: $default-line-height
-  max-width: 100%
-  text-transform: none
+.alignnone
+  margin: $spacer 0
 
+.aligncenter
+  display: block
+  clear: both
+  margin: $spacer auto
+
+.alignright
+  float: right
+  clear: right
+  margin: $spacer / 2 0 $spacer $spacer / 2
+
+.alignleft
+  float: left
+  clear: left
+  margin: $spacer / 2 $spacer / 2 $spacer 0
+
+img
+  &.alignnone
+    vertical-align: middle
+
+.wp-caption
   img
     display: block
-    margin: 0
-    border: 0
-    padding: 0
-    width: 100%
-    height: auto
-
-  .wp-caption-dt
-    display: block
-    margin: 0
-    padding: 0
-
-  .wp-caption-text,
-  .wp-caption-dd
-    display: block
-    opacity: 0.5
-    margin: 0
-    border-bottom: 1px solid #000
-    padding: 12px 0 13px
-    line-height: 27px
-    color: $black
-    font-size: 14px
-    font-weight: 400
-    font-style: italic
-
-  dl
-    opacity: 1
-    margin: 3px 0 0
+    max-width: 100%
 
   p
-    margin: 0
+    &.wp-caption-text
+      margin: 0
+      padding: $spacer / 4 $spacer / 4 $spacer / 2
+      font-size: 0.8em
+
+.screen-reader-text
+  border: 0
+  padding: 0
+  width: 1px
+  height: 1px
+  overflow: hidden
+  clip: rect(0, 0, 0, 0)
+  white-space: nowrap
+  +position-absolute
+
+  &:active,
+  &:focus
+    width: auto
+    height: auto
+    overflow: visible
+    clip: auto
+    white-space: normal
+    +position-static

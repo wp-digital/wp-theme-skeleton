@@ -1,5 +1,7 @@
-    </div>
-    <footer id="footer"></footer>
+    </main>
+    <footer>
+
+    </footer>
     <?php wp_footer() ?>
 </body>
 </html>

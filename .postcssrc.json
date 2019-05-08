@@ -1,8 +1,0 @@
-{
-  "parser": "postcss-sass",
-  "plugins": {
-    "postcss-import": {},
-    "postcss-preset-env": {},
-    "cssnano": {}
-  }
-}

@@ -8,12 +8,17 @@
     {
       "type": "composer",
       "url": "https://wpackagist.org"
+    },
+    {
+      "type": "vcs",
+      "url": "git@github.com:innocode-digital/wp-theme-assets.git"
     }
   ],
   "require": {
     "wpmetabox/meta-box": "^4.15",
     "vlucas/phpdotenv": "^2.5",
-    "meta-box/mb-revision": "dev-master"
+    "meta-box/mb-revision": "dev-master",
+    "innocode-digital/wp-theme-assets": "dev-master"
   },
   "extra": {
     "installer-paths": {

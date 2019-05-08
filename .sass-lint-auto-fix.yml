@@ -1,7 +1,0 @@
-files:
-  ignore:
-    - node_modules/**/*
-    - bower_components/**/*
-    - jspm_packages/**/*
-resolvers:
-  indentation: 1

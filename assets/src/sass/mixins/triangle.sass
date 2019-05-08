@@ -1,10 +1,32 @@
-=triangle($width: 10px, $height: 10px)
-    $horisontal-width: $width / 2
-    $vertical-width: $height / 2
-    display: block
-    border-width: $vertical-width $horisontal-width $vertical-width $horisontal-width
-    border-style: solid
-    border-color: transparent
-    width: 0
-    height: 0
-    content: ''
+=triangle($direction: top, $color: currentColor, $width: 10px, $height: 10px)
+  $half-width: $width / 2
+  $half-height: $height / 2
+
+  border-style: solid
+  height: 0
+  width: 0
+
+  @if $direction == top
+    border-color: transparent transparent $color transparent
+    border-width: 0 $half-width $height $half-width
+  @else if $direction == right
+    border-color: transparent transparent transparent $color
+    border-width: $half-height 0 $half-height $width
+  @else if $direction == bottom
+    border-color: $color transparent transparent transparent
+    border-width: $height $half-width 0 $half-width
+  @else if $direction == left
+    border-color: transparent $color transparent transparent
+    border-width: $half-height $width $half-height 0
+  @else if $direction == top-left
+    border-color: $color transparent transparent transparent
+    border-width: $height $width 0 0
+  @else if $direction == top-right
+    border-color: transparent $color transparent transparent
+    border-width: 0 $width $height 0
+  @else if $direction == bottom-left
+    border-color: transparent transparent transparent $color
+    border-width: $height 0 0 $width
+  @else if $direction == bottom-right
+    border-color: transparent transparent $color transparent
+    border-width: 0 0 $height $width
