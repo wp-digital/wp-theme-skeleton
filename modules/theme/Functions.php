@@ -5,10 +5,10 @@ namespace modules\theme;
 use WPKit\Module\AbstractThemeFunctions;
 
 /**
-* Class Functions
-*
-* @package modules\theme
-*/
+ * Class Functions
+ *
+ * @package modules\theme
+ */
 class Functions extends AbstractThemeFunctions
 {
     /**
@@ -33,13 +33,5 @@ class Functions extends AbstractThemeFunctions
     public static function get_environment()
     {
         return defined( 'ENVIRONMENT' ) ? ENVIRONMENT : 'production';
-    }
-
-    /**
-     * @return string
-     */
-    public static function get_assets_suffix()
-    {
-        return static::is_production() ? '.min' : '';
     }
 }

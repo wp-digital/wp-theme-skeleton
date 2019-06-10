@@ -1,0 +1,66 @@
+{
+  "name": "innocode-digital/wp-theme-skeleton",
+  "version": "2.0.0",
+  "description": "WordPress theme skeleton.",
+  "type": "project",
+  "license": "proprietary",
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://wpackagist.org"
+    },
+    {
+      "type": "vcs",
+      "url": "git@github.com:innocode-digital/wp-theme-assets"
+    },
+    {
+      "type": "vcs",
+      "url": "git@github.com:innocode-digital/wp-normalize"
+    }
+  ],
+  "require": {
+    "wpmetabox/meta-box": "^4.15",
+    "vlucas/phpdotenv": "^2.5",
+    "meta-box/mb-revision": "dev-master",
+    "innocode-digital/wp-normalize": "dev-master",
+    "innocode-digital/wp-theme-assets": "dev-master",
+    "wpackagist-plugin/disable-comments": "*"
+  },
+  "extra": {
+    "installer-paths": {
+      "vendor/meta-box/{$name}/": [
+        "vendor:meta-box"
+      ],
+      "../../plugins/{$name}/": [
+        "type:wordpress-plugin"
+      ]
+    }
+  },
+  "autoload": {
+    "files": [
+      "vendor/meta-box/mb-revision/mb-revision.php"
+    ]
+  },
+  "authors": [
+    {
+      "name": "Innocode",
+      "email": "post@innocode.no",
+      "homepage": "https://innocode.com/"
+    },
+    {
+      "name": "Viktor Kuliebiakin",
+      "email": "kuliebiakin@gmail.com"
+    },
+    {
+      "name": "Vladilen Tsvetkov",
+      "email": "tini2n@gmail.com",
+      "homepage": "https://www.facebook.com/tini2n"
+    },
+    {
+      "name": "Mike Pinchuk"
+    },
+    {
+      "name": "Nikolay"
+    }
+  ]
+}

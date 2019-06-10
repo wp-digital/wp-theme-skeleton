@@ -1,18 +1,19 @@
-=breakpoint-min($media-min, $property: width)
-    @media only screen and (min-#{$property}: $media-min + 'px')
+=breakpoint($property: width, $min: 0, $max: 0)
+  @if $max
+    @if $min
+      @media only screen and (min-#{$property}: '#{$min}px') and (max-#{$property}: '#{$max}px')
         @content
+    @else
+      @media only screen and (max-#{$property}: '#{$max}px')
+        @content
+  @else
+    @media only screen and (min-#{$property}: '#{$min}px')
+      @content
 
-=breakpoint-max($media-max, $property: width)
-    @media only screen and (max-#{$property}: $media-max + 'px')
-        @content
-    
-=breakpoint($property: width, $media-min : false, $media-max : false)
-    @if ($media-min) 
-        @if ($media-max)
-            @media only screen and (min-#{$property}: $media-min + 'px') and (max-#{$property}: $media-max + 'px')
-                @content
-        @else
-            +breakpoint-min($media-min, $property)
-    @else 
-        @if ($media-max)
-            +breakpoint-max($media-max, $property)
+=breakpoint-min($value, $property: width)
+  +breakpoint($property, $value)
+    @content
+
+=breakpoint-max($value, $property: width)
+  +breakpoint($property, false, $value)
+    @content
