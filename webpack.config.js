@@ -2,11 +2,12 @@ const fs = require('fs');
 const notifier = require('node-notifier');
 const path = require('path');
 const webpack = require('webpack');
-const CleanPlugin = require('clean-webpack-plugin');
-const IgnoreEmitPlugin = require('ignore-emit-webpack-plugin');
-const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const IgnoreEmitWebpackPlugin = require('ignore-emit-webpack-plugin');
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const StyleLintPlugin = require('stylelint-bare-webpack-plugin');
+const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
+const StyleLintWebpackPlugin = require('stylelint-bare-webpack-plugin');
 const WebpackAssetsManifest = require('webpack-assets-manifest');
 
 const config = require('./config');
@@ -20,16 +21,19 @@ const getEntry = dirs =>
         withFileTypes: true,
       })
       .filter(dirent => !dirent.isDirectory())
-      .reduce(
-        (entries, file) => ({
+      .reduce((entries, file) => {
+        if (file.name === '.gitkeep') {
+          return entries;
+        }
+
+        return {
           ...entries,
           [`${prefix}/${path.parse(file.name).name}`]: path.resolve(
             src,
             file.name
           ),
-        }),
-        {}
-      );
+        };
+      }, {});
 
     return {
       ...entry,
@@ -37,11 +41,24 @@ const getEntry = dirs =>
     };
   }, {});
 
-const cssBuild = config.build.css.replace(`${config.build.dir}/`, '');
-const ignoreCssEmitRegex = new RegExp(`${cssBuild}/.+(\\.min)?\\.js(\\.map)?$`);
-const imgBuild = config.build.img.replace(`${config.build.dir}/`, '');
-const ignoreImgEmitRegex = new RegExp(`${imgBuild}/.+(\\.min)?\\.js(\\.map)?$`);
-const externalPackagesRegex = /(node_modules|bower_components|jspm_packages)/;
+const getIgnoreEmitRegex = dirs =>
+  dirs.map(dir => {
+    const relPath = dir.replace(`${config.build.dir}/`, '');
+
+    return new RegExp(`${relPath}/.+(\\.min)?\\.js(\\.map)?$`);
+  });
+
+const getOutputPath = (url, resourcePath) => {
+  const src = resourcePath
+    .replace(`${path.resolve(config.src.dir)}/`, '')
+    .split('/');
+
+  if (src.length) {
+    src[src.length - 1] = url;
+  }
+
+  return src.join('/');
+};
 
 module.exports = (env, argv) => {
   const isProd = argv.mode === 'production';
@@ -55,16 +72,18 @@ module.exports = (env, argv) => {
     devtool: !isProd ? 'cheap-module-source-map' : false,
     entry: getEntry([
       [config.src.js, config.build.js],
-      [config.src.sass, config.build.css],
       [config.src.img, config.build.img],
+      [config.src.sass, config.build.css],
+      [config.src.sprite, config.build.sprite],
     ]),
     output: {
       filename: `[name]${isProd ? '.[hash].min' : ''}.js`,
       chunkFilename: `[id]${isProd ? '.[chunkhash].min' : ''}.js`,
       path: path.resolve(config.build.dir),
+      publicPath: '../',
     },
     resolve: {
-      modules: [path.resolve(config.src.dir), 'node_modules'],
+      modules: [config.src.dir, 'node_modules'],
       extensions: [
         '.js',
         '.mjs',
@@ -81,14 +100,20 @@ module.exports = (env, argv) => {
       ],
     },
     plugins: [
-      new CleanPlugin(),
+      new CleanWebpackPlugin(),
       new MiniCssExtractPlugin({
         filename: `[name]${isProd ? '.[hash].min' : ''}.css`,
         chunkFilename: `[id]${isProd ? '.[chunkhash].min' : ''}.css`,
         sourceMap: !isProd,
       }),
-      new IgnoreEmitPlugin([ignoreCssEmitRegex, ignoreImgEmitRegex]),
-      new StyleLintPlugin({
+      new IgnoreEmitWebpackPlugin(
+        getIgnoreEmitRegex([
+          config.build.css,
+          config.build.img,
+          config.build.sprite,
+        ])
+      ),
+      new StyleLintWebpackPlugin({
         files: path.join(config.src.sass, '**/*.s?(c|a)ss'),
         syntax: 'sass',
         // We need to wait for a better times to set "fix" option.
@@ -99,6 +124,12 @@ module.exports = (env, argv) => {
       new webpack.ProvidePlugin({
         $: 'jquery',
         jQuery: 'jquery',
+      }),
+      new SpriteLoaderPlugin({
+        plainSprite: true,
+        spriteAttrs: {
+          style: ['position: absolute', 'width: 0', 'height: 0'].join('; '),
+        },
       }),
       new webpack.HashedModuleIdsPlugin(),
       new WebpackAssetsManifest({
@@ -115,19 +146,41 @@ module.exports = (env, argv) => {
         transform(assets) {
           return {
             ...Object.keys(assets).reduce((entries, entry) => {
-              if (entry.toLowerCase().endsWith('.map')) {
+              const sanitized = entry.toLowerCase();
+
+              if (sanitized.endsWith('.map')) {
                 return entries;
               }
 
               return {
                 ...entries,
-                [entry]: `${config.build.dir}/${assets[entry]}`,
+                [sanitized.startsWith('sprite.') ? 'sprite.svg' : entry]: `${
+                  config.build.dir
+                }/${assets[entry]}`,
               };
             }, {}),
           };
         },
       }),
-      new FriendlyErrorsPlugin({
+      {
+        apply: compiler => {
+          compiler.hooks.emit.tapAsync(
+            'PhpSpriteCopyPlugin',
+            (compilation, callback) => {
+              const entry = Object.keys(compilation.assets).find(key =>
+                key.toLowerCase().startsWith('sprite.')
+              );
+
+              if (entry) {
+                compilation.assets[`${entry}.php`] = compilation.assets[entry];
+              }
+
+              callback();
+            }
+          );
+        },
+      },
+      new FriendlyErrorsWebpackPlugin({
         onErrors(severity, errors) {
           if (severity !== 'error') {
             return;
@@ -139,7 +192,7 @@ module.exports = (env, argv) => {
             title: error.name,
             message: error.message || '',
             subtitle: error.file || '',
-            icon: path.resolve(config.icon),
+            icon: config.icon,
           });
         },
       }),
@@ -150,7 +203,7 @@ module.exports = (env, argv) => {
           oneOf: [
             {
               test: /\.m?jsx?$/,
-              exclude: externalPackagesRegex,
+              include: path.resolve(config.src.js),
               use: [
                 {
                   loader: 'babel-loader',
@@ -221,13 +274,36 @@ module.exports = (env, argv) => {
               ],
             },
             {
-              test: /\.(gif|png|jpe?g|svg)$/i,
-              include: path.resolve(config.src.img),
+              test: /\.svg$/i,
+              include: path.resolve(config.src.sprite),
+              use: [
+                {
+                  loader: 'svg-sprite-loader',
+                  options: {
+                    extract: true,
+                    spriteFilename: `sprite${isProd ? '.[hash]' : ''}.svg`,
+                  },
+                },
+                {
+                  loader: 'svgo-loader',
+                  options: {
+                    plugins: [{ removeViewBox: false }, { cleanupIDs: false }],
+                  },
+                },
+              ],
+            },
+            {
+              test: /\.(gif|png|jpe?g|svg|webp)$/i,
+              include: path.resolve(config.src.dir),
+              exclude: [
+                path.resolve(config.src.sprite),
+                path.resolve(config.src.fonts),
+              ],
               use: [
                 {
                   loader: 'file-loader',
                   options: {
-                    outputPath: imgBuild,
+                    outputPath: getOutputPath,
                     name: `[name]${isProd ? '.[hash]' : ''}.[ext]`,
                   },
                 },
@@ -235,25 +311,32 @@ module.exports = (env, argv) => {
                   loader: 'image-webpack-loader',
                   options: {
                     mozjpeg: {
-                      progressive: true,
-                      quality: 65,
-                    },
-                    optipng: {
-                      enabled: false,
+                      quality: 75,
                     },
                     pngquant: {
-                      quality: '65-90',
+                      quality: '75-90',
                       speed: 4,
                     },
-                    gifsicle: {
-                      interlaced: false,
+                    svgo: {
+                      plugins: [
+                        { removeViewBox: false },
+                        { cleanupIDs: false },
+                      ],
                     },
-                    webp: {
-                      quality: 75,
+                    gifsicle: {
+                      optimizationLevel: 3,
                     },
                   },
                 },
               ],
+            },
+            {
+              include: path.resolve(config.src.dir),
+              loader: 'file-loader',
+              options: {
+                outputPath: getOutputPath,
+                name: `[name]${isProd ? '.[hash]' : ''}.[ext]`,
+              },
             },
           ],
         },
@@ -262,21 +345,23 @@ module.exports = (env, argv) => {
     optimization: {
       splitChunks: {
         cacheGroups: {
-          commons: {
-            chunks: 'all',
-            minChunks: 2,
-          },
-          vendors: {
+          vendor: {
             test: /[\\/]node_modules[\\/]/,
-            name: 'vendor',
+            name: 'js/vendor',
             chunks: 'all',
             priority: -10,
+          },
+          common: {
+            name: 'js/common',
+            chunks: 'all',
+            minChunks: 2,
+            priority: -20,
           },
         },
       },
     },
     watchOptions: {
-      ignored: externalPackagesRegex,
+      ignored: /(node_modules|bower_components|jspm_packages)/,
       poll: 1000,
     },
     externals: {

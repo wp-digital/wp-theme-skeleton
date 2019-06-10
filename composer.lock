@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "85ff95419ddee08531ea9dfabebbd306",
+    "content-hash": "c150d3e7505415aa0e1dec888c116dea",
     "packages": [
         {
             "name": "composer/installers",
@@ -127,17 +127,47 @@
             "time": "2018-08-27T06:10:37+00:00"
         },
         {
+            "name": "innocode-digital/wp-normalize",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/innocode-digital/wp-normalize.git",
+                "reference": "2eaac70ea1cce6a5abd17c5053948db9afda3cd7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/innocode-digital/wp-normalize/zipball/2eaac70ea1cce6a5abd17c5053948db9afda3cd7",
+                "reference": "2eaac70ea1cce6a5abd17c5053948db9afda3cd7",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/normalize.php"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Library for disabling probably unnecessary WordPress features.",
+            "support": {
+                "source": "https://github.com/innocode-digital/wp-normalize/tree/master",
+                "issues": "https://github.com/innocode-digital/wp-normalize/issues"
+            },
+            "time": "2019-05-23T14:18:24+00:00"
+        },
+        {
             "name": "innocode-digital/wp-theme-assets",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/innocode-digital/wp-theme-assets.git",
-                "reference": "94919b164cb2cef7bc00c90aee9cfb376d1038f5"
+                "reference": "a9b0ac721a8bd965ab895e462fb4755556fea752"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/innocode-digital/wp-theme-assets/zipball/94919b164cb2cef7bc00c90aee9cfb376d1038f5",
-                "reference": "94919b164cb2cef7bc00c90aee9cfb376d1038f5",
+                "url": "https://api.github.com/repos/innocode-digital/wp-theme-assets/zipball/a9b0ac721a8bd965ab895e462fb4755556fea752",
+                "reference": "a9b0ac721a8bd965ab895e462fb4755556fea752",
                 "shasum": ""
             },
             "type": "library",
@@ -154,7 +184,7 @@
                 "source": "https://github.com/innocode-digital/wp-theme-assets/tree/master",
                 "issues": "https://github.com/innocode-digital/wp-theme-assets/issues"
             },
-            "time": "2019-05-08T09:46:04+00:00"
+            "time": "2019-06-10T12:55:54+00:00"
         },
         {
             "name": "meta-box/mb-revision",
@@ -278,17 +308,35 @@
             "time": "2019-01-29T11:11:52+00:00"
         },
         {
-            "name": "wpmetabox/meta-box",
-            "version": "4.17.3",
+            "name": "wpackagist-plugin/disable-comments",
+            "version": "1.9.0",
             "source": {
-                "type": "git",
-                "url": "https://github.com/wpmetabox/meta-box.git",
-                "reference": "d722632101a8dd5802ae35b54dd52442e6cac9d9"
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/disable-comments/",
+                "reference": "tags/1.9.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wpmetabox/meta-box/zipball/d722632101a8dd5802ae35b54dd52442e6cac9d9",
-                "reference": "d722632101a8dd5802ae35b54dd52442e6cac9d9",
+                "url": "https://downloads.wordpress.org/plugin/disable-comments.1.9.0.zip"
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/disable-comments/"
+        },
+        {
+            "name": "wpmetabox/meta-box",
+            "version": "4.18.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wpmetabox/meta-box.git",
+                "reference": "5785c7064438bf0a3f71691be5d91b16e9e61539"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wpmetabox/meta-box/zipball/5785c7064438bf0a3f71691be5d91b16e9e61539",
+                "reference": "5785c7064438bf0a3f71691be5d91b16e9e61539",
                 "shasum": ""
             },
             "type": "library",
@@ -320,7 +368,7 @@
                 "wordpress-plugin",
                 "wp-admin"
             ],
-            "time": "2019-04-09T02:27:33+00:00"
+            "time": "2019-05-21T07:15:16+00:00"
         }
     ],
     "packages-dev": [],
@@ -328,6 +376,7 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "meta-box/mb-revision": 20,
+        "innocode-digital/wp-normalize": 20,
         "innocode-digital/wp-theme-assets": 20
     },
     "prefer-stable": false,

@@ -34,12 +34,4 @@ class Functions extends AbstractThemeFunctions
     {
         return defined( 'ENVIRONMENT' ) ? ENVIRONMENT : 'production';
     }
-
-    /**
-     * @return string
-     */
-    public static function get_assets_suffix()
-    {
-        return static::is_production() ? '.min' : '';
-    }
 }

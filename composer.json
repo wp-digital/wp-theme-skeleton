@@ -11,14 +11,20 @@
     },
     {
       "type": "vcs",
-      "url": "git@github.com:innocode-digital/wp-theme-assets.git"
+      "url": "git@github.com:innocode-digital/wp-theme-assets"
+    },
+    {
+      "type": "vcs",
+      "url": "git@github.com:innocode-digital/wp-normalize"
     }
   ],
   "require": {
     "wpmetabox/meta-box": "^4.15",
     "vlucas/phpdotenv": "^2.5",
     "meta-box/mb-revision": "dev-master",
-    "innocode-digital/wp-theme-assets": "dev-master"
+    "innocode-digital/wp-normalize": "dev-master",
+    "innocode-digital/wp-theme-assets": "dev-master",
+    "wpackagist-plugin/disable-comments": "*"
   },
   "extra": {
     "installer-paths": {
