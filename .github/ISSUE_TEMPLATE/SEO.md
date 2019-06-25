@@ -13,8 +13,8 @@ assignees: ''
 - [ ] Production site **is not** indexed **before** launch
 - [ ] Production site **is** indexed **after** launch
 - [ ] Domains w/ _www_ and w/o _www_ are added but only one is used as primary
-- [ ] Site domain is set to _live_ value in database after launch
-- [ ] Site domain is set **only** to _www_ or _non-www_ value in database
+- [ ] Site domain is set to _live_ value in database after launch (use --network flag for WordPress network)
+- [ ] Site domain is set **only** to _www_ or _non-www_ value in database (use --network flag for WordPress network)
 - [ ] Use permalink structure with %postname%
 - [ ] 404 page is added and styled
 - [ ] HTML is valid
