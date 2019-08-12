@@ -154,9 +154,9 @@ module.exports = (env, argv) => {
 
               return {
                 ...entries,
-                [sanitized.startsWith('sprite.') ? 'sprite.svg' : entry]: `${
-                  config.build.dir
-                }/${assets[entry]}`,
+                [sanitized.startsWith('sprite.')
+                  ? 'sprite.svg'
+                  : entry]: `${config.build.dir}/${assets[entry]}`,
               };
             }, {}),
           };
