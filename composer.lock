@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c150d3e7505415aa0e1dec888c116dea",
+    "content-hash": "63696017e2e942515a91d05074e31924",
     "packages": [
         {
             "name": "composer/installers",
-            "version": "v1.6.0",
+            "version": "v1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/installers.git",
-                "reference": "cfcca6b1b60bc4974324efb5783c13dca6932b5b"
+                "reference": "141b272484481432cda342727a427dc1e206bfa0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/installers/zipball/cfcca6b1b60bc4974324efb5783c13dca6932b5b",
-                "reference": "cfcca6b1b60bc4974324efb5783c13dca6932b5b",
+                "url": "https://api.github.com/repos/composer/installers/zipball/141b272484481432cda342727a427dc1e206bfa0",
+                "reference": "141b272484481432cda342727a427dc1e206bfa0",
                 "shasum": ""
             },
             "require": {
@@ -73,6 +73,7 @@
                 "RadPHP",
                 "SMF",
                 "Thelia",
+                "Whmcs",
                 "WolfCMS",
                 "agl",
                 "aimeos",
@@ -95,6 +96,7 @@
                 "installer",
                 "itop",
                 "joomla",
+                "known",
                 "kohana",
                 "laravel",
                 "lavalite",
@@ -124,7 +126,7 @@
                 "zend",
                 "zikula"
             ],
-            "time": "2018-08-27T06:10:37+00:00"
+            "time": "2019-08-12T15:00:31+00:00"
         },
         {
             "name": "innocode-digital/wp-normalize",
@@ -132,12 +134,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/innocode-digital/wp-normalize.git",
-                "reference": "2eaac70ea1cce6a5abd17c5053948db9afda3cd7"
+                "reference": "78b3c157b04665fdcbd68f1eb6c995ef536e392b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/innocode-digital/wp-normalize/zipball/2eaac70ea1cce6a5abd17c5053948db9afda3cd7",
-                "reference": "2eaac70ea1cce6a5abd17c5053948db9afda3cd7",
+                "url": "https://api.github.com/repos/innocode-digital/wp-normalize/zipball/78b3c157b04665fdcbd68f1eb6c995ef536e392b",
+                "reference": "78b3c157b04665fdcbd68f1eb6c995ef536e392b",
                 "shasum": ""
             },
             "type": "library",
@@ -154,7 +156,7 @@
                 "source": "https://github.com/innocode-digital/wp-normalize/tree/master",
                 "issues": "https://github.com/innocode-digital/wp-normalize/issues"
             },
-            "time": "2019-05-23T14:18:24+00:00"
+            "time": "2019-08-16T09:20:15+00:00"
         },
         {
             "name": "innocode-digital/wp-theme-assets",
@@ -187,6 +189,28 @@
             "time": "2019-06-10T12:55:54+00:00"
         },
         {
+            "name": "innocode-digital/wp-theme-module",
+            "version": "1.0.0",
+            "dist": {
+                "type": "path",
+                "url": "/Users/viktor/Documents/Development/PHP/wp-theme-module",
+                "reference": "f31cedcde4d2c377ed345cff3f2535b5dea1ed75"
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Innocode\\WPThemeModule\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Library for WordPress theme modularization."
+        },
+        {
             "name": "meta-box/mb-revision",
             "version": "master",
             "dist": {
@@ -200,16 +224,16 @@
         },
         {
             "name": "symfony/polyfill-ctype",
-            "version": "v1.11.0",
+            "version": "v1.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-ctype.git",
-                "reference": "82ebae02209c21113908c229e9883c419720738a"
+                "reference": "550ebaac289296ce228a706d0867afc34687e3f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/82ebae02209c21113908c229e9883c419720738a",
-                "reference": "82ebae02209c21113908c229e9883c419720738a",
+                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/550ebaac289296ce228a706d0867afc34687e3f4",
+                "reference": "550ebaac289296ce228a706d0867afc34687e3f4",
                 "shasum": ""
             },
             "require": {
@@ -221,7 +245,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.11-dev"
+                    "dev-master": "1.12-dev"
                 }
             },
             "autoload": {
@@ -238,12 +262,12 @@
             ],
             "authors": [
                 {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                },
-                {
                     "name": "Gert de Pagter",
                     "email": "BackEndTea@gmail.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
                 }
             ],
             "description": "Symfony polyfill for ctype functions",
@@ -254,7 +278,7 @@
                 "polyfill",
                 "portable"
             ],
-            "time": "2019-02-06T07:57:58+00:00"
+            "time": "2019-08-06T08:03:45+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -309,15 +333,15 @@
         },
         {
             "name": "wpackagist-plugin/disable-comments",
-            "version": "1.9.0",
+            "version": "1.10.2",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/disable-comments/",
-                "reference": "tags/1.9.0"
+                "reference": "trunk"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/disable-comments.1.9.0.zip"
+                "url": "https://downloads.wordpress.org/plugin/disable-comments.zip?timestamp=1563798431"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -327,16 +351,16 @@
         },
         {
             "name": "wpmetabox/meta-box",
-            "version": "4.18.1",
+            "version": "4.18.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wpmetabox/meta-box.git",
-                "reference": "5785c7064438bf0a3f71691be5d91b16e9e61539"
+                "reference": "d299ea6d2dcfb55b05201fd1ac10e4cc1a6e839a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wpmetabox/meta-box/zipball/5785c7064438bf0a3f71691be5d91b16e9e61539",
-                "reference": "5785c7064438bf0a3f71691be5d91b16e9e61539",
+                "url": "https://api.github.com/repos/wpmetabox/meta-box/zipball/d299ea6d2dcfb55b05201fd1ac10e4cc1a6e839a",
+                "reference": "d299ea6d2dcfb55b05201fd1ac10e4cc1a6e839a",
                 "shasum": ""
             },
             "type": "library",
@@ -352,9 +376,9 @@
             "authors": [
                 {
                     "name": "Tran Ngoc Tuan Anh",
+                    "role": "Developer",
                     "email": "anhtnt@elightup.com",
-                    "homepage": "https://deluxeblogtips.com",
-                    "role": "Developer"
+                    "homepage": "https://deluxeblogtips.com"
                 }
             ],
             "description": "A powerful, professional developer toolkit to create custom meta boxes and custom fields for WordPress websites.",
@@ -368,7 +392,7 @@
                 "wordpress-plugin",
                 "wp-admin"
             ],
-            "time": "2019-05-21T07:15:16+00:00"
+            "time": "2019-07-06T01:57:45+00:00"
         }
     ],
     "packages-dev": [],
