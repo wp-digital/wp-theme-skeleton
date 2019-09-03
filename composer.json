@@ -23,13 +23,13 @@
     }
   ],
   "require": {
-    "wpmetabox/meta-box": "^4.15",
-    "vlucas/phpdotenv": "^2.5",
-    "meta-box/mb-revision": "dev-master",
     "innocode-digital/wp-normalize": "dev-master",
     "innocode-digital/wp-theme-assets": "dev-master",
     "innocode-digital/wp-theme-module": "dev-master",
-    "wpackagist-plugin/disable-comments": "*"
+    "vlucas/phpdotenv": "^3.5",
+    "wpackagist-plugin/disable-comments": "*",
+    "wpmetabox/meta-box": "^5.1",
+    "meta-box/mb-revision": "dev-master"
   },
   "extra": {
     "installer-paths": {
