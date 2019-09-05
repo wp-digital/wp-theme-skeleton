@@ -194,12 +194,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/innocode-digital/wp-theme-module.git",
-                "reference": "9c7b169394441a1d06918edae1354e589197d476"
+                "reference": "861d44485cbae835ab8e197172cdaf7d11bdc674"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/innocode-digital/wp-theme-module/zipball/9c7b169394441a1d06918edae1354e589197d476",
-                "reference": "9c7b169394441a1d06918edae1354e589197d476",
+                "url": "https://api.github.com/repos/innocode-digital/wp-theme-module/zipball/861d44485cbae835ab8e197172cdaf7d11bdc674",
+                "reference": "861d44485cbae835ab8e197172cdaf7d11bdc674",
                 "shasum": ""
             },
             "require": {
@@ -219,7 +219,7 @@
                 "source": "https://github.com/innocode-digital/wp-theme-module/tree/master",
                 "issues": "https://github.com/innocode-digital/wp-theme-module/issues"
             },
-            "time": "2019-09-04T09:25:38+00:00"
+            "time": "2019-09-05T11:39:57+00:00"
         },
         {
             "name": "meta-box/mb-revision",
