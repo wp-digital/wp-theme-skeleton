@@ -2,7 +2,7 @@
 
 namespace Module\Theme;
 
-use Innocode\WPThemeModule\AbstractFunctions;
+use Innocode\WPThemeModule\Abstracts\AbstractFunctions;
 
 /**
  * Class Functions

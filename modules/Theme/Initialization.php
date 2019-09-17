@@ -2,7 +2,7 @@
 
 namespace Module\Theme;
 
-use Innocode\WPThemeModule\AbstractThemeInitialization;
+use Innocode\WPThemeModule\Abstracts\AbstractThemeInitialization;
 use Innocode\WPThemeAssets;
 
 /**
@@ -12,17 +12,17 @@ use Innocode\WPThemeAssets;
  */
 class Initialization extends AbstractThemeInitialization
 {
-    public static function get_image_sizes() : array
+    public function get_image_sizes() : array
     {
         return [];
     }
 
-    public static function get_nav_menus_locations() : array
+    public function get_nav_menus_locations() : array
     {
         return [];
     }
 
-    public static function enqueue_styles()
+    public function enqueue_styles()
     {
         WPThemeAssets\Queue::add_style( 'theme-screen', 'css/screen.css' );
         WPThemeAssets\Queue::add_style(
@@ -33,7 +33,7 @@ class Initialization extends AbstractThemeInitialization
         );
     }
 
-    public static function enqueue_scripts()
+    public function enqueue_scripts()
     {
         foreach ( [
             'vendor',
@@ -49,22 +49,22 @@ class Initialization extends AbstractThemeInitialization
         }
     }
 
-    public static function add_action_admin_init()
+    public function add_action_admin_init()
     {
         add_editor_style( WPThemeAssets\Helpers::url( 'css/editor.css' ) );
     }
 
-    public static function add_action_admin_enqueue_scripts()
+    public function add_action_admin_enqueue_scripts()
     {
         WPThemeAssets\Queue::add_style( 'theme-admin', 'css/admin.css' );
     }
 
-    public static function add_action_login_enqueue_scripts()
+    public function add_action_login_enqueue_scripts()
     {
         WPThemeAssets\Queue::add_style( 'theme-login', 'css/login.css' );
     }
 
-    public static function add_action_wp_body_open()
+    public function add_action_wp_body_open()
     {
         WPThemeAssets\Helpers::template( 'sprite.svg' );
     }
@@ -77,15 +77,15 @@ class Initialization extends AbstractThemeInitialization
     /**
      * @return array
      */
-    public static function add_filter_focal_previews_sizes()
+    public function add_filter_focal_previews_sizes()
     {
-        return array_keys( static::get_image_sizes() );
+        return array_keys( $this->get_image_sizes() );
     }
 
     /**
      * @return array
      */
-    public static function add_filter_aws_lambda_critical_css_styles()
+    public function add_filter_aws_lambda_critical_css_styles()
     {
         return [
             'theme',
@@ -97,7 +97,7 @@ class Initialization extends AbstractThemeInitialization
      *
      * @return string
      */
-    public static function add_filter_aws_lambda_critical_css_stylesheet( $stylesheet )
+    public function add_filter_aws_lambda_critical_css_stylesheet( $stylesheet )
     {
         // @TODO: fix url
         $stylesheet = str_replace(
@@ -111,7 +111,7 @@ class Initialization extends AbstractThemeInitialization
             : $stylesheet;
     }
 
-    public static function add_action_aws_lambda_critical_css_printed()
+    public function add_action_aws_lambda_critical_css_printed()
     {
         add_filter( 'deferred_loading_styles', function () {
             return [
@@ -123,7 +123,7 @@ class Initialization extends AbstractThemeInitialization
     /**
      * @return array|string
      */
-    public static function add_filter_deferred_loading_scripts()
+    public function add_filter_deferred_loading_scripts()
     {
         return '*';
     }
