@@ -4,6 +4,9 @@
   "description": "WordPress theme skeleton.",
   "type": "project",
   "license": "proprietary",
+  "config": {
+    "sort-packages": true
+  },
   "repositories": [
     {
       "type": "composer",
@@ -35,6 +38,9 @@
     "installer-paths": {
       "vendor/meta-box/{$name}/": [
         "vendor:meta-box"
+      ],
+      "../../mu-plugins/{$name}/": [
+        "type:wordpress-muplugin"
       ],
       "../../plugins/{$name}/": [
         "type:wordpress-plugin"

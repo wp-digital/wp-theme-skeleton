@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "18bb34228127c513dc37d731cbe21114",
+    "content-hash": "47732f44d3d92acf7e6e1fe29329ccef",
     "packages": [
         {
             "name": "composer/installers",
@@ -134,29 +134,27 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/innocode-digital/wp-normalize.git",
-                "reference": "78b3c157b04665fdcbd68f1eb6c995ef536e392b"
+                "reference": "ea202dc76b6df99d262a6fd4823eb39476132538"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/innocode-digital/wp-normalize/zipball/78b3c157b04665fdcbd68f1eb6c995ef536e392b",
-                "reference": "78b3c157b04665fdcbd68f1eb6c995ef536e392b",
+                "url": "https://api.github.com/repos/innocode-digital/wp-normalize/zipball/ea202dc76b6df99d262a6fd4823eb39476132538",
+                "reference": "ea202dc76b6df99d262a6fd4823eb39476132538",
                 "shasum": ""
             },
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "src/normalize.php"
-                ]
+            "require": {
+                "composer/installers": "~1.0"
             },
+            "type": "wordpress-muplugin",
             "license": [
-                "MIT"
+                "GPL-2.0+"
             ],
-            "description": "Library for disabling probably unnecessary WordPress features.",
+            "description": "Disable probably unnecessary WordPress features.",
             "support": {
                 "source": "https://github.com/innocode-digital/wp-normalize/tree/master",
                 "issues": "https://github.com/innocode-digital/wp-normalize/issues"
             },
-            "time": "2019-08-16T09:20:15+00:00"
+            "time": "2019-09-25T14:04:49+00:00"
         },
         {
             "name": "innocode-digital/wp-theme-assets",
@@ -164,12 +162,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/innocode-digital/wp-theme-assets.git",
-                "reference": "a9b0ac721a8bd965ab895e462fb4755556fea752"
+                "reference": "0853b0f5c6ee9ed198bb3e41def7fe3f349e3d24"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/innocode-digital/wp-theme-assets/zipball/a9b0ac721a8bd965ab895e462fb4755556fea752",
-                "reference": "a9b0ac721a8bd965ab895e462fb4755556fea752",
+                "url": "https://api.github.com/repos/innocode-digital/wp-theme-assets/zipball/0853b0f5c6ee9ed198bb3e41def7fe3f349e3d24",
+                "reference": "0853b0f5c6ee9ed198bb3e41def7fe3f349e3d24",
                 "shasum": ""
             },
             "type": "library",
@@ -186,7 +184,7 @@
                 "source": "https://github.com/innocode-digital/wp-theme-assets/tree/master",
                 "issues": "https://github.com/innocode-digital/wp-theme-assets/issues"
             },
-            "time": "2019-06-10T12:55:54+00:00"
+            "time": "2019-09-24T13:22:22+00:00"
         },
         {
             "name": "innocode-digital/wp-theme-module",
@@ -194,12 +192,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/innocode-digital/wp-theme-module.git",
-                "reference": "00e2c6ea36f46bcd69cfecc8c07190ebfe57e06d"
+                "reference": "f184e2fccc15000dc7d9b2ebd88b7d64f863e207"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/innocode-digital/wp-theme-module/zipball/00e2c6ea36f46bcd69cfecc8c07190ebfe57e06d",
-                "reference": "00e2c6ea36f46bcd69cfecc8c07190ebfe57e06d",
+                "url": "https://api.github.com/repos/innocode-digital/wp-theme-module/zipball/f184e2fccc15000dc7d9b2ebd88b7d64f863e207",
+                "reference": "f184e2fccc15000dc7d9b2ebd88b7d64f863e207",
                 "shasum": ""
             },
             "require": {
@@ -219,7 +217,7 @@
                 "source": "https://github.com/innocode-digital/wp-theme-module/tree/master",
                 "issues": "https://github.com/innocode-digital/wp-theme-module/issues"
             },
-            "time": "2019-09-17T10:17:17+00:00"
+            "time": "2019-09-24T13:24:06+00:00"
         },
         {
             "name": "meta-box/mb-revision",
@@ -418,16 +416,16 @@
         },
         {
             "name": "wpmetabox/meta-box",
-            "version": "5.1.2",
+            "version": "5.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wpmetabox/meta-box.git",
-                "reference": "b0ffb654e69dcb19297e53a4f1dff723a0aba1cb"
+                "reference": "2d90950fbaa24e1f6243cd1a4d271adb62a1f0f9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wpmetabox/meta-box/zipball/b0ffb654e69dcb19297e53a4f1dff723a0aba1cb",
-                "reference": "b0ffb654e69dcb19297e53a4f1dff723a0aba1cb",
+                "url": "https://api.github.com/repos/wpmetabox/meta-box/zipball/2d90950fbaa24e1f6243cd1a4d271adb62a1f0f9",
+                "reference": "2d90950fbaa24e1f6243cd1a4d271adb62a1f0f9",
                 "shasum": ""
             },
             "type": "library",
@@ -459,7 +457,7 @@
                 "wordpress-plugin",
                 "wp-admin"
             ],
-            "time": "2019-08-29T04:42:17+00:00"
+            "time": "2019-09-18T07:03:05+00:00"
         }
     ],
     "packages-dev": [],
