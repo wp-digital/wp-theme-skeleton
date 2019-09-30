@@ -11,7 +11,7 @@
 Run `wp scaffold theme`. See details 
 [innocode-digital/wp-cli-scaffold-theme-command](https://github.com/innocode-digital/wp-cli-scaffold-theme-command).
 
-Run `composer install` and `npm install` in generated theme directory.
+Run `npm install` in generated theme directory.
 
 **Not recommended**
 
@@ -32,48 +32,4 @@ rm -Rf .git/
 Find all `@TODO: ...` in code and replace with needed settings. 
 Also fill right data in `composer.json` and `package.json`.
 
-Run `composer install` and `npm install` in generated theme directory.
-
-### Caveats
-
-**Install premium extensions from metabox.io**
-
-See documentation [metabox.io](https://docs.metabox.io/extensions/composer/) on how to do it in general. 
-Keep in mind that storing of the API Key in project `composer.json` is not a good idea, since 
-there is possible situation that project will be taken by someone else, so the API Key may be accidentally
-shared. To add private source to `repositories`, you can add it in global config with the following command 
-`composer config repositories.metabox\.io composer https://packages.metabox.io/<API Key> --global` or edit 
-`$HOME/.composer/config.json` manually:
-
-~~~
-{
-    "config": {},
-    "repositories": {
-        "metabox.io": {
-            "type": "composer",
-            "url": "https://packages.metabox.io/<API Key>"
-        }
-    }
-}
-~~~
-
-Then it should be possible to add extensions to project:
-
-~~~
-composer require meta-box/meta-box-group:dev-master
-~~~
-
-**Autoload metabox.io extensions**
-
-By default extensions are not loaded from `vendor/autoload.php`, so you need to specify files 
-manually in `autoload` of `composer.json`:
-
-~~~
-"autoload": {
-    "files": [
-        "vendor/meta-box/mb-settings-page/mb-settings-page.php",
-        "vendor/meta-box/meta-box-group/meta-box-group.php",
-        "vendor/meta-box/meta-box-columns/meta-box-columns.php"
-    ]
-}
-~~~ 
+Run `npm install` in generated theme directory.
