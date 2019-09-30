@@ -2,7 +2,7 @@
   "name": "innocode-digital/wp-theme-skeleton",
   "version": "2.0.0",
   "description": "WordPress theme skeleton.",
-  "type": "project",
+  "type": "wordpress-theme",
   "license": "proprietary",
   "config": {
     "sort-packages": true
@@ -26,6 +26,8 @@
     }
   ],
   "require": {
+    "php": ">=7.1",
+    "composer/installers": "~1.0",
     "innocode-digital/wp-normalize": "dev-master",
     "innocode-digital/wp-theme-assets": "dev-master",
     "innocode-digital/wp-theme-module": "dev-master",
@@ -44,6 +46,9 @@
       ],
       "../../plugins/{$name}/": [
         "type:wordpress-plugin"
+      ],
+      "../{$name}/": [
+        "type:wordpress-theme"
       ]
     }
   },
