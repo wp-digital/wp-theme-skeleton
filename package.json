@@ -2,10 +2,9 @@
   "name": "wp-theme-skeleton",
   "version": "2.1.0",
   "description": "WordPress theme skeleton.",
-  "main": "gulpfile.js",
   "scripts": {
-    "start": "",
-    "build": "",
+    "start": "webpack --watch",
+    "build": "webpack --mode=production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
