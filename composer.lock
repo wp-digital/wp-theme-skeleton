@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "768df9cf20f1c04c442f48c71e6febdf",
+    "content-hash": "2df36c9f1f25f37ad125923a61c6cf08",
     "packages": [
         {
             "name": "composer/installers",
@@ -134,12 +134,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/innocode-digital/wp-theme-assets.git",
-                "reference": "0853b0f5c6ee9ed198bb3e41def7fe3f349e3d24"
+                "reference": "de0fe9787264d4e0b47cc400e376d8b6e6d562e8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/innocode-digital/wp-theme-assets/zipball/0853b0f5c6ee9ed198bb3e41def7fe3f349e3d24",
-                "reference": "0853b0f5c6ee9ed198bb3e41def7fe3f349e3d24",
+                "url": "https://api.github.com/repos/innocode-digital/wp-theme-assets/zipball/de0fe9787264d4e0b47cc400e376d8b6e6d562e8",
+                "reference": "de0fe9787264d4e0b47cc400e376d8b6e6d562e8",
                 "shasum": ""
             },
             "type": "library",
@@ -148,15 +148,12 @@
                     "Innocode\\WPThemeAssets\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
             "description": "Library for WordPress theme assets files.",
-            "support": {
-                "source": "https://github.com/innocode-digital/wp-theme-assets/tree/master",
-                "issues": "https://github.com/innocode-digital/wp-theme-assets/issues"
-            },
-            "time": "2019-09-24T13:22:22+00:00"
+            "time": "2019-10-22T15:04:30+00:00"
         },
         {
             "name": "innocode-digital/wp-theme-module",
@@ -181,14 +178,11 @@
                     "Innocode\\WPThemeModule\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
             "description": "Library for WordPress theme modularization.",
-            "support": {
-                "source": "https://github.com/innocode-digital/wp-theme-module/tree/master",
-                "issues": "https://github.com/innocode-digital/wp-theme-module/issues"
-            },
             "time": "2019-09-24T13:24:06+00:00"
         },
         {

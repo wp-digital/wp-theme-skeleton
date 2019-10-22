@@ -11,14 +11,6 @@
     {
       "type": "composer",
       "url": "https://wpackagist.org"
-    },
-    {
-      "type": "vcs",
-      "url": "git@github.com:innocode-digital/wp-theme-assets"
-    },
-    {
-      "type": "vcs",
-      "url": "git@github.com:innocode-digital/wp-theme-module"
     }
   ],
   "require": {
