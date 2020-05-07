@@ -88,7 +88,7 @@ class Initialization extends AbstractThemeInitialization
     public function add_filter_aws_lambda_critical_css_styles()
     {
         return [
-            'theme',
+            'theme-screen',
         ];
     }
 
@@ -111,11 +111,22 @@ class Initialization extends AbstractThemeInitialization
             : $stylesheet;
     }
 
+    /**
+     * @return array
+     */
+    public function add_filter_deferred_loading_styles()
+    {
+        return [
+            'dashicons',
+            'wp-block-library',
+        ];
+    }
+
     public function add_action_aws_lambda_critical_css_printed()
     {
         add_filter( 'deferred_loading_styles', function () {
             return [
-                'theme',
+                'theme-screen',
             ];
         } );
     }
