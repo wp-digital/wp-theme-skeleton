@@ -26,7 +26,7 @@ assignees: ''
 - [ ] Setup Google Analytics - depending on environment, possibly one for stage and one for prod
 - [ ] Site search in Google Analytics - Make sure internal site search is recorded in Google Analytics
 - [ ] Setup Google Tag Manager - depending on environment, possibly one for stage and one for prod
-- [ ] Setup Google Search Console - on pro
+- [ ] Setup Google Search Console - on prod
 - [ ] Install WordPress SEO plugin is activated (in priority is Yoast, also possible to use SEOPress etc.)
 - [ ] Setup Yoast - if it is being used
 - [ ] Check Sitemap - Check all links. Should be status 200 or 301
