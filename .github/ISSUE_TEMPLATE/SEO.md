@@ -15,7 +15,7 @@ assignees: ''
 - [ ] Domains w/ _www_ and w/o _www_ are added but only one is used as primary
 - [ ] Site domain is set to _live_ value in database after launch (use --network flag for WordPress network)
 - [ ] Site domain is set **only** to _www_ or _non-www_ value in database (use --network flag for WordPress network)
-- [ ] Install SSL/HTTPS
+- [ ] Install SSL/HTTPS - then check assets are still showing incognito mode (as sometimes they can be cached on CDN and problem is not detected)
 - [ ] Set correct permalink structure - General advice: /%category%/%postname%/
 - [ ] 404 page is added and styled
 - [ ] HTML is valid - we can use https://validator.w3.org/
