@@ -12,3 +12,4 @@ assignees: ''
 - [ ] Change **Home**
 - [ ] Change **Site Address (URL)** in network
 - [ ] Search-replace all URLs in database (use --network flag for WordPress network)
+- [ ] Check assets are showing (there are times when they are cached on CDN and the problem is not detected immediately)
