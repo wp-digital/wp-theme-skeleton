@@ -7,7 +7,7 @@ assignees: ''
 
 ---
 
-- [ ] Install certificate on server
+- [ ] Install certificate on server - please check certificate for www and non - www
 - [ ] Change **Siteurl**
 - [ ] Change **Home**
 - [ ] Change **Site Address (URL)** in network
