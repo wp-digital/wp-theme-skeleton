@@ -7,8 +7,8 @@ if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
 }
 
 if ( file_exists( __DIR__ . '/.env' ) ) {
-    $dotenv = Dotenv\Dotenv::create( __DIR__ );
-    $dotenv->overload();
+    $dotenv = Dotenv\Dotenv::createImmutable( __DIR__ );
+    $dotenv->load();
 }
 
 $loader = new Innocode\WPThemeModule\Loader();

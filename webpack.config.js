@@ -7,12 +7,12 @@ const IgnoreEmitWebpackPlugin = require('ignore-emit-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
-const StyleLintWebpackPlugin = require('stylelint-bare-webpack-plugin');
+const StyleLintWebpackPlugin = require('stylelint-webpack-plugin');
 const WebpackAssetsManifest = require('webpack-assets-manifest');
 
 const config = require('./config');
 
-const getEntry = dirs =>
+const getEntry = (dirs) =>
   dirs.reduce((entry, dir) => {
     const [src, build] = dir;
     const prefix = build.replace(/.*\/([^/]+)$/g, '$1');
@@ -20,7 +20,7 @@ const getEntry = dirs =>
       .readdirSync(path.resolve(src), {
         withFileTypes: true,
       })
-      .filter(dirent => !dirent.isDirectory())
+      .filter((dirent) => !dirent.isDirectory())
       .reduce((entries, file) => {
         if (file.name === '.gitkeep') {
           return entries;
@@ -41,8 +41,8 @@ const getEntry = dirs =>
     };
   }, {});
 
-const getIgnoreEmitRegex = dirs =>
-  dirs.map(dir => {
+const getIgnoreEmitRegex = (dirs) =>
+  dirs.map((dir) => {
     const relPath = dir.replace(`${config.build.dir}/`, '');
 
     return new RegExp(`${relPath}/.+(\\.min)?\\.js(\\.map)?$`);
@@ -114,7 +114,7 @@ module.exports = (env, argv) => {
         ])
       ),
       new StyleLintWebpackPlugin({
-        files: path.join(config.src.sass, '**/*.s?(c|a)ss'),
+        files: path.join(config.src.sass, '**/*.s?(c|a)ss').replace('\\', '/'),
         syntax: 'sass',
         // We need to wait for a better times to set "fix" option.
         // Currently it has a lot of issues, especially with .sass files.
@@ -136,11 +136,13 @@ module.exports = (env, argv) => {
         output: 'manifest.json.php',
         apply(manifest) {
           /* eslint-disable no-param-reassign */
-          manifest.toString = () => `<?php return json_decode( '${JSON.stringify(
-            manifest,
-            manifest.options.replacer,
-            manifest.options.space
-          ) || '{}'}', true );
+          manifest.toString = () => `<?php return json_decode( '${
+            JSON.stringify(
+              manifest,
+              manifest.options.replacer,
+              manifest.options.space
+            ) || '{}'
+          }', true );
 `;
         },
         transform(assets) {
@@ -163,11 +165,11 @@ module.exports = (env, argv) => {
         },
       }),
       {
-        apply: compiler => {
+        apply: (compiler) => {
           compiler.hooks.emit.tapAsync(
             'PhpSpriteCopyPlugin',
             (compilation, callback) => {
-              const entry = Object.keys(compilation.assets).find(key =>
+              const entry = Object.keys(compilation.assets).find((key) =>
                 key.toLowerCase().startsWith('sprite.')
               );
 
