@@ -104,7 +104,6 @@ module.exports = (env, argv) => {
       new MiniCssExtractPlugin({
         filename: `[name]${isProd ? '.[hash].min' : ''}.css`,
         chunkFilename: `[id]${isProd ? '.[chunkhash].min' : ''}.css`,
-        sourceMap: !isProd,
       }),
       new IgnoreEmitWebpackPlugin(
         getIgnoreEmitRegex([
@@ -316,7 +315,7 @@ module.exports = (env, argv) => {
                       quality: 75,
                     },
                     pngquant: {
-                      quality: '75-90',
+                      quality: [0.75, 0.9],
                       speed: 4,
                     },
                     svgo: {
