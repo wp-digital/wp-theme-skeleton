@@ -116,6 +116,9 @@
   "lint-staged": {
     "assets/src/**/*.{js,jsx,ts,tsx}": [
       "eslint --fix"
+    ],
+    "assets/src/**/*.{js,jsx,ts,tsx,json,css,scss,sass,md}": [
+      "prettier --write"
     ]
   },
   "husky": {
