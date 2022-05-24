@@ -4,7 +4,7 @@ const path = require('path');
 const webpack = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const IgnoreEmitWebpackPlugin = require('ignore-emit-webpack-plugin');
-const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+const WebpackBuildNotifier = require('webpack-build-notifier');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 const StyleLintWebpackPlugin = require('stylelint-webpack-plugin');
@@ -181,22 +181,16 @@ module.exports = (env, argv) => {
           );
         },
       },
-      new FriendlyErrorsWebpackPlugin({
-        onErrors(severity, errors) {
-          if (severity !== 'error') {
-            return;
-          }
-
-          const error = errors[0];
-
-          notifier.notify({
-            title: error.name,
-            message: error.message || '',
-            subtitle: error.file || '',
-            icon: config.icon,
-          });
-        },
-      }),
+      JSON.parse(process.env.WITH_NOTIFICATIONS)
+        ? new WebpackBuildNotifier({
+            title: 'Project build',
+            logo: config.icon,
+            suppressSuccess: false,
+            successSound: false,
+            failureSound: false,
+            warningSound: false,
+          })
+        : { apply: () => {} },
     ],
     module: {
       rules: [
