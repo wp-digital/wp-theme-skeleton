@@ -85,6 +85,8 @@ module.exports = (env, argv) => {
     resolve: {
       modules: [config.src.dir, 'node_modules'],
       extensions: [
+        '.tsx',
+        '.ts',
         '.js',
         '.mjs',
         '.jsx',
@@ -203,7 +205,7 @@ module.exports = (env, argv) => {
         {
           oneOf: [
             {
-              test: /\.m?jsx?$/,
+              test: /\.m?(ts|js)x?$/,
               include: path.resolve(config.src.js),
               use: [
                 {
