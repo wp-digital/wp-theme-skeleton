@@ -1,5 +1,5 @@
 {
-  "plugins": ["prettier"],
+  "plugins": ["prettier", "jest"],
   "extends": ["airbnb", "prettier", "prettier/react"],
   "parser": "babel-eslint",
   "env": {
@@ -10,7 +10,8 @@
     "worker": true,
     "amd": true,
     "jquery": true,
-    "serviceworker": true
+    "serviceworker": true,
+    "jest/globals": true
   },
   "settings": {
     "import/core-modules": ["jquery"]
