@@ -9,6 +9,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 const StyleLintWebpackPlugin = require('stylelint-webpack-plugin');
 const WebpackAssetsManifest = require('webpack-assets-manifest');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const config = require('./config');
 
@@ -50,8 +51,8 @@ const getIgnoreEmitRegex = (dirs) =>
 
 const getOutputPath = (url, resourcePath) => {
   const src = resourcePath
-    .replace(`${path.resolve(config.src.dir)}/`, '')
-    .split('/');
+    .replace(`${path.resolve(config.src.dir)}\\`, '')
+    .split('\\');
 
   if (src.length) {
     src[src.length - 1] = url;
@@ -196,6 +197,11 @@ module.exports = (env, argv) => {
             icon: config.icon,
           });
         },
+      }),
+      new BundleAnalyzerPlugin({
+        analyzerMode: 'disabled',
+        openAnalyzer: false,
+        generateStatsFile: true,
       }),
     ],
     module: {
