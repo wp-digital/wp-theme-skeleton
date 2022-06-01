@@ -86,11 +86,13 @@
     "file-loader": "^6.2.0",
     "friendly-errors-webpack-plugin": "^1.7.0",
     "fs": "0.0.1-security",
+    "husky": "^4.3.8",
     "ignore-emit-webpack-plugin": "^2.0.3",
     "image-webpack-loader": "^7.0.1",
     "imagemin-jpegoptim": "^7.0.0",
     "imagemin-pngcrush": "^7.0.0",
     "imagemin-pngquant": "^9.0.2",
+    "lint-staged": "^12.5.0",
     "mini-css-extract-plugin": "^1.6.2",
     "node-notifier": "^9.0.1",
     "node-sass": "^6.0.1",
@@ -123,5 +125,18 @@
     "core-js": "^3.6.5",
     "detect-touch-events": "^2.0.2",
     "normalize.css": "^8.0.1"
+  },
+  "lint-staged": {
+    "assets/src/**/*.{js,jsx,ts,tsx}": [
+      "eslint --fix"
+    ],
+    "assets/src/**/*.{js,jsx,ts,tsx,json,css,scss,sass,md}": [
+      "prettier --write"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }
