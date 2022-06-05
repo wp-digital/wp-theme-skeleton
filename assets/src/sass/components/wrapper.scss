@@ -1,0 +1,12 @@
+.wrapper {
+  padding: 0 $wrapper-padding;
+  max-width: $wrapper-width;
+
+  &_inner {
+    max-width: $wrapper-width-inner;
+  }
+
+  &_outer {
+    max-width: $wrapper-width-outer;
+  }
+}

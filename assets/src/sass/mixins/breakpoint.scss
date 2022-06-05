@@ -1,0 +1,29 @@
+@mixin breakpoint($property: width, $min: 0, $max: 0) {
+  @if $max {
+    @if $min {
+      @media only screen and (min-#{$property}: "#{$min}px") and (max-#{$property}: "#{$max}px") {
+        @content;
+      }
+    } @else {
+      @media only screen and (max-#{$property}: "#{$max}px") {
+        @content;
+      }
+    }
+  } @else {
+    @media only screen and (min-#{$property}: "#{$min}px") {
+      @content;
+    }
+  }
+}
+
+@mixin breakpoint-min($value, $property: width) {
+  @include breakpoint($property, $value) {
+    @content;
+  }
+}
+
+@mixin breakpoint-max($value, $property: width) {
+  @include breakpoint($property, false, $value) {
+    @content;
+  }
+}

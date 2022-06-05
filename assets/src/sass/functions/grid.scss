@@ -1,0 +1,5 @@
+@use "sass:math";
+
+@function grid-item-width($width, $columns, $gutter-width) {
+  @return math.percentage(math.div((math.div($width, $columns) - $gutter-width), $width));
+}

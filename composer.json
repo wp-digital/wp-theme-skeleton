@@ -4,48 +4,13 @@
   "description": "A WordPress theme skeleton.",
   "type": "wordpress-theme",
   "license": "proprietary",
-  "config": {
-    "sort-packages": true
-  },
-  "repositories": [
-    {
-      "type": "composer",
-      "url": "https://wpackagist.org"
-    }
-  ],
   "require": {
-    "php": ">=7.1",
-    "ext-json": "*",
-    "composer/installers": "~1.0",
     "innocode-digital/wp-theme-assets": "dev-master",
-    "innocode-digital/wp-theme-module": "dev-master",
-    "vlucas/phpdotenv": "^4.0"
+    "innocode-digital/wp-theme-module": "dev-master"
   },
   "autoload": {
     "psr-4": {
       "Module\\": "modules/"
     }
-  },
-  "authors": [
-    {
-      "name": "Innocode",
-      "email": "post@innocode.no",
-      "homepage": "https://innocode.com/"
-    },
-    {
-      "name": "Viktor Kuliebiakin",
-      "email": "kuliebiakin@gmail.com"
-    },
-    {
-      "name": "Vladilen Tsvetkov",
-      "email": "tini2n@gmail.com",
-      "homepage": "https://www.facebook.com/tini2n"
-    },
-    {
-      "name": "Mike Pinchuk"
-    },
-    {
-      "name": "Nikolay"
-    }
-  ]
+  }
 }

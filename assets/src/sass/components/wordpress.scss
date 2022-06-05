@@ -1,0 +1,67 @@
+@use "sass:math";
+
+.alignnone {
+  margin: $spacer 0;
+}
+
+.aligncenter {
+  display: block;
+  clear: both;
+  margin: $spacer auto;
+}
+
+.alignright {
+  float: right;
+  clear: right;
+  margin: math.div($spacer, 2) 0 $spacer math.div($spacer, 2);
+}
+
+.alignleft {
+  float: left;
+  clear: left;
+  margin: math.div($spacer, 2) math.div($spacer, 2) $spacer 0;
+}
+
+img {
+  &.alignnone {
+    vertical-align: middle;
+  }
+}
+
+.wp-caption {
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  p {
+    &.wp-caption-text {
+      margin: 0;
+      padding: math.div($spacer, 4) math.div($spacer, 4) math.div($spacer, 2);
+      font-size: 0.8em;
+    }
+  }
+}
+
+.screen-reader-text {
+  @include position-absolute;
+
+  border: 0;
+  padding: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+
+  &:active,
+  &:focus {
+    @include position-static;
+
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+}

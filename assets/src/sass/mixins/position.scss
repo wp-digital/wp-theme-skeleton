@@ -1,0 +1,23 @@
+@mixin position($position, $top: null, $right: null, $bottom: null, $left: null) {
+  position: $position;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
+@mixin position-absolute($args...) {
+  @include position(absolute, $args...);
+}
+
+@mixin position-relative($args...) {
+  @include position(relative, $args...);
+}
+
+@mixin position-fixed($args...) {
+  @include position(fixed, $args...);
+}
+
+@mixin position-static {
+  @include position(static);
+}
