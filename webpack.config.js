@@ -1,5 +1,5 @@
+require('dotenv').config();
 const fs = require('fs');
-const notifier = require('node-notifier');
 const path = require('path');
 const webpack = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -181,7 +181,8 @@ module.exports = (env, argv) => {
           );
         },
       },
-      JSON.parse(process.env.WITH_NOTIFICATIONS)
+      Object.prototype.hasOwnProperty.call(process.env, 'WEBPACK_NOTIFY') &&
+      JSON.parse(process.env.WEBPACK_NOTIFY)
         ? new WebpackBuildNotifier({
             title: 'Project build',
             logo: config.icon,

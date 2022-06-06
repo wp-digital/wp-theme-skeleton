@@ -3,8 +3,8 @@
   "version": "2.5.0",
   "description": "A WordPress theme skeleton.",
   "scripts": {
-    "start": "cross-env WITH_NOTIFICATIONS=false webpack --watch",
-    "build": "cross-env WITH_NOTIFICATIONS=false webpack --mode=production",
+    "start": "webpack --watch",
+    "build": "webpack --mode=production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -108,8 +108,8 @@
     "@babel/runtime": "^7.12.1",
     "@wordpress/dom-ready": "^2.11.0",
     "core-js": "^3.6.5",
-    "cross-env": "^7.0.3",
     "detect-touch-events": "^2.0.2",
+    "dotenv": "^16.0.1",
     "normalize.css": "^8.0.1"
   }
 }
