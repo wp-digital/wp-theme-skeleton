@@ -1,15 +1,16 @@
 const fs = require('fs');
-const notifier = require('node-notifier');
 const path = require('path');
 const webpack = require('webpack');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
 const IgnoreEmitWebpackPlugin = require('ignore-emit-webpack-plugin');
-const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 const StyleLintWebpackPlugin = require('stylelint-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const WebpackAssetsManifest = require('webpack-assets-manifest');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const config = require('./config');
 
@@ -18,7 +19,7 @@ const getEntry = (dirs) =>
     const [src, build] = dir;
     const prefix = build.replace(/.*\/([^/]+)$/g, '$1');
     const dirEntries = fs
-      .readdirSync(path.resolve(src), {
+      .readdirSync(path.resolve(__dirname, src), {
         withFileTypes: true,
       })
       .filter((dirent) => !dirent.isDirectory())
@@ -30,6 +31,7 @@ const getEntry = (dirs) =>
         return {
           ...entries,
           [`${prefix}/${path.parse(file.name).name}`]: path.resolve(
+            __dirname,
             src,
             file.name
           ),
@@ -49,18 +51,6 @@ const getIgnoreEmitRegex = (dirs) =>
     return new RegExp(`${relPath}/.+(\\.min)?\\.js(\\.map)?$`);
   });
 
-const getOutputPath = (url, resourcePath) => {
-  const src = resourcePath
-    .replace(`${path.resolve(config.src.dir)}\\`, '')
-    .split('\\');
-
-  if (src.length) {
-    src[src.length - 1] = url;
-  }
-
-  return src.join('/');
-};
-
 module.exports = (env, argv) => {
   const isProd = argv.mode === 'production';
   const mode = isProd ? 'production' : 'development';
@@ -70,7 +60,7 @@ module.exports = (env, argv) => {
 
   return {
     mode,
-    devtool: !isProd ? 'cheap-module-source-map' : false,
+    devtool: !isProd ? 'cheap-module-source-map' : 'source-map',
     entry: getEntry([
       [config.src.js, config.build.js],
       [config.src.img, config.build.img],
@@ -78,13 +68,16 @@ module.exports = (env, argv) => {
       [config.src.sprite, config.build.sprite],
     ]),
     output: {
-      filename: `[name]${isProd ? '.[hash].min' : ''}.js`,
       chunkFilename: `[id]${isProd ? '.[chunkhash].min' : ''}.js`,
-      path: path.resolve(config.build.dir),
+      filename: `[name]${isProd ? '.[contenthash].min' : ''}.js`,
+      path: path.resolve(__dirname, config.build.dir),
       publicPath: '../',
+      assetModuleFilename: `[name]${
+        isProd ? '.[contenthash]' : ''
+      }[ext][query]`,
+      clean: true,
     },
     resolve: {
-      modules: [config.src.dir, 'node_modules'],
       extensions: [
         '.tsx',
         '.ts',
@@ -101,11 +94,15 @@ module.exports = (env, argv) => {
         '.gif',
         '.svg',
       ],
+      modules: [path.resolve(__dirname, config.src.dir), 'node_modules'],
     },
     plugins: [
-      new CleanWebpackPlugin(),
+      new ESLintPlugin({
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        fix: true,
+      }),
       new MiniCssExtractPlugin({
-        filename: `[name]${isProd ? '.[hash].min' : ''}.css`,
+        filename: `[name]${isProd ? '.[contenthash].min' : ''}.css`,
         chunkFilename: `[id]${isProd ? '.[chunkhash].min' : ''}.css`,
       }),
       new IgnoreEmitWebpackPlugin(
@@ -116,11 +113,8 @@ module.exports = (env, argv) => {
         ])
       ),
       new StyleLintWebpackPlugin({
-        files: path.join(config.src.sass, '**/*.s?(c|a)ss').replace('\\', '/'),
-        syntax: 'sass',
-        // We need to wait for a better times to set "fix" option.
-        // Currently it has a lot of issues, especially with .sass files.
-        fix: false,
+        context: path.resolve(__dirname, config.src.sass),
+        fix: true,
         failOnError: !argv.watch,
       }),
       new webpack.ProvidePlugin({
@@ -133,7 +127,7 @@ module.exports = (env, argv) => {
           style: ['position: absolute', 'width: 0', 'height: 0'].join('; '),
         },
       }),
-      new webpack.HashedModuleIdsPlugin(),
+      new webpack.ids.HashedModuleIdsPlugin(),
       new WebpackAssetsManifest({
         output: 'manifest.json.php',
         apply(manifest) {
@@ -184,22 +178,6 @@ module.exports = (env, argv) => {
           );
         },
       },
-      new FriendlyErrorsWebpackPlugin({
-        onErrors(severity, errors) {
-          if (severity !== 'error') {
-            return;
-          }
-
-          const error = errors[0];
-
-          notifier.notify({
-            title: error.name,
-            message: error.message || '',
-            subtitle: error.file || '',
-            icon: config.icon,
-          });
-        },
-      }),
       new BundleAnalyzerPlugin({
         analyzerMode: 'disabled',
         openAnalyzer: false,
@@ -212,162 +190,139 @@ module.exports = (env, argv) => {
           oneOf: [
             {
               test: /\.m?(ts|js)x?$/,
-              include: path.resolve(config.src.js),
-              use: [
-                {
-                  loader: 'babel-loader',
-                },
-                {
-                  loader: 'eslint-loader',
-                  options: {
-                    fix: true,
-                    format: 'pretty',
-                  },
-                },
-              ],
+              include: path.resolve(__dirname, config.src.js),
+              use: ['babel-loader'],
             },
             {
               test: /\.(sa|sc|c)ss$/,
-              include: path.resolve(config.src.sass),
+              include: path.resolve(__dirname, config.src.sass),
               use: [
                 MiniCssExtractPlugin.loader,
-                {
-                  loader: 'css-loader',
-                  options: {
-                    sourceMap: !isProd,
-                  },
-                },
-                {
-                  loader: 'postcss-loader',
-                  options: {
-                    sourceMap: !isProd,
-                  },
-                },
-                {
-                  loader: 'sass-loader',
-                  options: {
-                    sourceMap: !isProd,
-                  },
-                },
+                'css-loader',
+                'postcss-loader',
+                'sass-loader',
               ],
             },
             {
               test: /\.(sa|sc|c)ss$/,
-              include: path.resolve(config.src.js),
+              include: path.resolve(__dirname, config.src.js),
               exclude: /\.module\.(sa|sc|c)ss$/,
               use: [
-                isProd
-                  ? MiniCssExtractPlugin.loader
-                  : {
-                      loader: 'style-loader',
-                    },
+                isProd ? MiniCssExtractPlugin.loader : 'style-loader',
                 {
                   loader: 'css-loader',
                   options: {
-                    sourceMap: !isProd,
                     modules: true,
                   },
                 },
-                {
-                  loader: 'postcss-loader',
-                  options: {
-                    sourceMap: !isProd,
-                  },
-                },
-                {
-                  loader: 'sass-loader',
-                  options: {
-                    sourceMap: !isProd,
-                  },
-                },
+                'postcss-loader',
+                'sass-loader',
               ],
             },
             {
               test: /\.svg$/i,
-              include: path.resolve(config.src.sprite),
+              include: path.resolve(__dirname, config.src.sprite),
               use: [
                 {
                   loader: 'svg-sprite-loader',
                   options: {
                     extract: true,
-                    spriteFilename: `sprite${isProd ? '.[hash]' : ''}.svg`,
-                  },
-                },
-                {
-                  loader: 'svgo-loader',
-                  options: {
-                    plugins: [{ removeViewBox: false }, { cleanupIDs: false }],
+                    spriteFilename: `sprite${
+                      isProd ? '.[contenthash]' : ''
+                    }.svg`,
                   },
                 },
               ],
             },
             {
               test: /\.(gif|png|jpe?g|svg|webp)$/i,
-              include: path.resolve(config.src.dir),
+              include: path.resolve(__dirname, config.src.dir),
               exclude: [
-                path.resolve(config.src.sprite),
-                path.resolve(config.src.fonts),
+                path.resolve(__dirname, config.src.sprite),
+                path.resolve(__dirname, config.src.fonts),
               ],
-              use: [
-                {
-                  loader: 'file-loader',
-                  options: {
-                    outputPath: getOutputPath,
-                    name: `[name]${isProd ? '.[hash]' : ''}.[ext]`,
-                  },
-                },
-                {
-                  loader: 'image-webpack-loader',
-                  options: {
-                    mozjpeg: {
-                      quality: 75,
-                    },
-                    pngquant: {
-                      quality: [0.75, 0.9],
-                      speed: 4,
-                    },
-                    svgo: {
-                      plugins: [
-                        { removeViewBox: false },
-                        { cleanupIDs: false },
-                      ],
-                    },
-                    gifsicle: {
-                      optimizationLevel: 3,
-                    },
-                  },
-                },
-              ],
+              type: 'asset/resource',
             },
             {
-              include: path.resolve(config.src.dir),
-              loader: 'file-loader',
-              options: {
-                outputPath: getOutputPath,
-                name: `[name]${isProd ? '.[hash]' : ''}.[ext]`,
-              },
+              test: /\.json$/i,
+              include: path.resolve(__dirname, config.src.dir),
+              type: 'asset/source',
+            },
+            {
+              include: path.resolve(__dirname, config.src.dir),
+              type: 'asset',
             },
           ],
         },
       ],
     },
     optimization: {
-      splitChunks: {
-        cacheGroups: {
-          vendor: {
-            test: /[\\/]node_modules[\\/]/,
-            name: 'js/vendor',
-            chunks: 'all',
-            priority: -10,
+      minimizer: [
+        new CssMinimizerPlugin(),
+        new ImageMinimizerPlugin({
+          minimizer: {
+            implementation: ImageMinimizerPlugin.imageminMinify,
+            options: {
+              plugins: [
+                [
+                  'gifsicle',
+                  {
+                    interlaced: true,
+                    optimizationLevel: 3,
+                  },
+                ],
+                [
+                  'mozjpeg',
+                  {
+                    quality: 75,
+                  },
+                ],
+                [
+                  'pngquant',
+                  {
+                    quality: [0.75, 0.9],
+                    speed: 4,
+                  },
+                ],
+                [
+                  'svgo',
+                  {
+                    plugins: [
+                      {
+                        name: 'preset-default',
+                        params: {
+                          overrides: {
+                            cleanupIDs: false,
+                            removeViewBox: false,
+                          },
+                        },
+                      },
+                    ],
+                  },
+                ],
+              ],
+            },
           },
-          common: {
-            name: 'js/common',
-            chunks: 'all',
-            minChunks: 2,
-            priority: -20,
-          },
-        },
-      },
+        }),
+        new TerserPlugin(),
+      ],
+      // @TODO: Enable when needed during optimization.
+      // splitChunks: {
+      //   cacheGroups: {
+      //     vendor: {
+      //       test: /[\\/]node_modules[\\/]/,
+      //       name: 'js/vendor',
+      //       chunks: 'all',
+      //       priority: -10,
+      //     },
+      //     common: {
+      //       name: 'js/common',
+      //       chunks: 'all',
+      //       minChunks: 2,
+      //       priority: -20,
+      //     },
+      //   },
+      // },
     },
     watchOptions: {
       ignored: /(node_modules|bower_components|jspm_packages)/,

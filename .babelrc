@@ -1,9 +1,8 @@
 {
   "presets": [
     ["@babel/preset-env", {
-      "loose": true,
       "useBuiltIns": "usage",
-      "corejs": 3
+      "corejs": "3.22"
     }],
     ["@babel/preset-react", {
       "runtime": "automatic"
@@ -11,16 +10,9 @@
     "@babel/preset-typescript"
   ],
   "plugins": [
-    ["@babel/plugin-proposal-object-rest-spread", {
-      "loose": true
-    }],
     ["@babel/plugin-proposal-decorators", {
-      "legacy": true
+      "decoratorsBeforeExport": true
     }],
-    ["@babel/plugin-proposal-class-properties", {
-      "loose": true
-    }],
-    ["@babel/plugin-syntax-dynamic-import"],
     ["@babel/plugin-transform-runtime"]
   ]
 }

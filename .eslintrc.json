@@ -1,26 +1,34 @@
 {
-  "plugins": ["prettier", "jest"],
-  "extends": ["airbnb", "airbnb/hooks", "airbnb-typescript", "prettier", "prettier/react"],
+  "root": true,
+  "plugins": ["jest"],
+  "extends": [
+    "airbnb",
+    "airbnb/hooks",
+    "airbnb-typescript",
+    "plugin:jest/style",
+    "plugin:prettier/recommended"
+  ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "project": "./tsconfig.json"
+    "project": "./tsconfig.eslint.json",
+    "ecmaVersion": "latest"
   },
   "env": {
     "browser": true,
     "node": true,
     "commonjs": true,
-    "es6": true,
+    "shared-node-browser": true,
+    "es2022": true,
     "worker": true,
     "amd": true,
+    "jest/globals": true,
     "jquery": true,
-    "serviceworker": true,
-    "jest/globals": true
+    "serviceworker": true
   },
   "settings": {
     "import/core-modules": ["jquery"]
   },
   "rules": {
-    "prettier/prettier": "error",
     "react/prop-types": 0,
     "jsx-a11y/label-has-associated-control": ["error", {
       "labelComponents": [],

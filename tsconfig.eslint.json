@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "assets/src/js",
+    "config.js",
+    "jest.config.js",
+    "postcss.config.js",
+    "webpack.config.js"
+  ]
+}
