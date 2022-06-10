@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
@@ -11,6 +13,7 @@ const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 const StyleLintWebpackPlugin = require('stylelint-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const WebpackAssetsManifest = require('webpack-assets-manifest');
+const WebpackBuildNotifier = require('webpack-build-notifier');
 
 const config = require('./config');
 
@@ -183,6 +186,17 @@ module.exports = (env, argv) => {
         openAnalyzer: false,
         generateStatsFile: true,
       }),
+      Object.prototype.hasOwnProperty.call(process.env, 'WEBPACK_NOTIFY') &&
+      JSON.parse(process.env.WEBPACK_NOTIFY)
+        ? new WebpackBuildNotifier({
+            title: 'Project build',
+            logo: config.icon,
+            suppressSuccess: false,
+            successSound: false,
+            failureSound: false,
+            warningSound: false,
+          })
+        : { apply: () => {} },
     ],
     module: {
       rules: [
