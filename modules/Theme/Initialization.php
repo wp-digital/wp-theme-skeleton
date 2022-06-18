@@ -85,7 +85,7 @@ class Initialization extends AbstractThemeInitialization
     /**
      * @return array
      */
-    public function add_filter_aws_lambda_critical_css_styles()
+    public function add_filter_innocode_critical_css_styles()
     {
         return [
             'theme-screen',
@@ -97,7 +97,7 @@ class Initialization extends AbstractThemeInitialization
      *
      * @return string
      */
-    public function add_filter_aws_lambda_critical_css_stylesheet( $stylesheet )
+    public function add_filter_innocode_critical_css_stylesheet( $stylesheet )
     {
         // @TODO: fix url
         $stylesheet = str_replace(
@@ -122,7 +122,7 @@ class Initialization extends AbstractThemeInitialization
         ];
     }
 
-    public function add_action_aws_lambda_critical_css_printed()
+    public function add_action_innocode_critical_css_printed()
     {
         add_filter( 'deferred_loading_styles', function () {
             return [
