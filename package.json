@@ -1,6 +1,6 @@
 {
   "name": "wp-theme-skeleton",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "description": "A WordPress theme skeleton.",
   "scripts": {
     "start": "webpack --watch",
