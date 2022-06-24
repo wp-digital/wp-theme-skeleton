@@ -2,8 +2,6 @@ html {
   box-sizing: border-box;
   height: 100%;
   font-size: $font-size-base;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 * {
@@ -16,6 +14,7 @@ html {
 }
 
 body {
+  @include antialiased;
   @include text-break;
 
   background: $body-background-color;
