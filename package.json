@@ -1,7 +1,7 @@
 {
 	"name": "wp-theme-skeleton",
-	"version": "3.3.0",
-	"description": "A WordPress theme skeleton.",
+	"version": "3.3.1",
+	"description": "Innocode theme skeleton.",
 	"scripts": {
 		"start": "webpack --watch",
 		"build": "webpack --mode=production",
