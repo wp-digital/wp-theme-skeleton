@@ -1,87 +1,87 @@
 @use "sass:math";
 
 .content {
-  text-align: justify;
-  font-family: $font-family-serif;
+	text-align: justify;
+	font-family: $font-family-serif;
 
-  p,
-  ul,
-  ol,
-  table {
-    margin: 0 0 $spacer;
-  }
+	p,
+	ul,
+	ol,
+	table {
+		margin: 0 0 $spacer;
+	}
 
-  ul,
-  ol {
-    padding: 0;
+	ul,
+	ol {
+		padding: 0;
 
-    li {
-      @include position-relative;
+		li {
+			@include position-relative;
 
-      padding-left: calc(#{$font-size-base} + 4px);
-    }
-  }
+			padding-left: calc(#{$font-size-base} + 4px);
+		}
+	}
 
-  ul {
-    li {
-      &::before {
-        @include position-absolute(calc(#{$line-height-base * $font-size-base} / 2 - 3px), auto, auto, 0);
+	ul {
+		li {
+			&::before {
+				@include position-absolute(calc(#{$line-height-base * $font-size-base} / 2 - 3px), auto, auto, 0);
 
-        opacity: 0.75;
-        border-radius: 50%;
-        background-color: $black;
-        width: 6px;
-        height: 6px;
-        content: "";
-      }
-    }
-  }
+				opacity: 0.75;
+				border-radius: 50%;
+				background-color: $black;
+				width: 6px;
+				height: 6px;
+				content: "";
+			}
+		}
+	}
 
-  ol {
-    list-style-type: none;
+	ol {
+		list-style-type: none;
 
-    li {
-      counter-increment: step-counter;
+		li {
+			counter-increment: step-counter;
 
-      &::before {
-        @include position-absolute(auto, auto, auto, 0);
+			&::before {
+				@include position-absolute(auto, auto, auto, 0);
 
-        opacity: 0.75;
-        content: counter(step-counter) ".";
-      }
-    }
-  }
+				opacity: 0.75;
+				content: counter(step-counter) ".";
+			}
+		}
+	}
 
-  table {
-    width: 100%;
-  }
+	table {
+		width: 100%;
+	}
 
-  th,
-  td {
-    border: 1px solid $black;
-    padding: math.div($spacer, 4) math.div($spacer, 2);
-  }
+	th,
+	td {
+		border: 1px solid $black;
+		padding: math.div($spacer, 4) math.div($spacer, 2);
+	}
 
-  th {
-    font-weight: bolder;
-  }
+	th {
+		font-weight: bolder;
+	}
 
-  a {
-    color: $body-color;
+	a {
+		color: $body-color;
 
-    &:hover,
-    &:active {
-      text-decoration: none;
-    }
-  }
+		&:hover,
+		&:active {
+			text-decoration: none;
+		}
+	}
 
-  img {
-    max-width: 100%;
-    height: auto;
-  }
+	img {
+		max-width: 100%;
+		height: auto;
+	}
 
-  pre {
-    overflow: auto;
-    white-space: normal;
-  }
+	pre {
+		overflow: auto;
+		white-space: normal;
+	}
 }

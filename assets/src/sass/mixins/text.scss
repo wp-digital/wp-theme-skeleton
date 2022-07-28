@@ -1,10 +1,10 @@
 @mixin text-break {
-  word-break: break-word;
-  overflow-wrap: break-word;
+	word-break: break-word;
+	overflow-wrap: break-word;
 }
 
 @mixin text-ellipsis {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }

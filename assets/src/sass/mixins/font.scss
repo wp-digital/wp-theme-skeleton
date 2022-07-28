@@ -3,46 +3,46 @@
 @use "sass:string";
 
 @mixin font($name, $filename, $weight: normal, $style: normal, $extensions: woff2 woff ttf svg) {
-  $dist: "~fonts/#{$filename}";
-  $formats: (otf: "opentype", ttf: "truetype");
-  $src: null;
+	$dist: "~fonts/#{$filename}";
+	$formats: (otf: "opentype", ttf: "truetype");
+	$src: null;
 
-  @each $extension in $extensions {
-    $format: if(map.has-key($formats, $extension), map.get($formats, $extension), $extension);
-    $src: list.append($src, url("#{$dist}.#{$extension}") format(string.quote($format)), comma);
-  }
+	@each $extension in $extensions {
+		$format: if(map.has-key($formats, $extension), map.get($formats, $extension), $extension);
+		$src: list.append($src, url("#{$dist}.#{$extension}") format(string.quote($format)), comma);
+	}
 
-  @font-face {
-    font-family: $name;
-    src: $src;
+	@font-face {
+		font-family: $name;
+		src: $src;
 
-    @if $weight == thin {
-      font-weight: 100;
-    } @else if $weight == extralight or $weight == ultralight {
-      font-weight: 200;
-    } @else if $weight == light {
-      font-weight: 300;
-    } @else if $weight == normal or $weight == book or $weight == regular {
-      font-weight: 400;
-    } @else if $weight == medium {
-      font-weight: 500;
-    } @else if $weight == semibold or $weight == demibold {
-      font-weight: 600;
-    } @else if $weight == bold {
-      font-weight: 700;
-    } @else if $weight == extrabold or $weight == ultrabold {
-      font-weight: 800;
-    } @else if $weight == heavy or $weight == black or $weight == super {
-      font-weight: 900;
-    } @else {
-      font-weight: $weight;
-    }
+		@if $weight == thin {
+			font-weight: 100;
+		} @else if $weight == extralight or $weight == ultralight {
+			font-weight: 200;
+		} @else if $weight == light {
+			font-weight: 300;
+		} @else if $weight == normal or $weight == book or $weight == regular {
+			font-weight: 400;
+		} @else if $weight == medium {
+			font-weight: 500;
+		} @else if $weight == semibold or $weight == demibold {
+			font-weight: 600;
+		} @else if $weight == bold {
+			font-weight: 700;
+		} @else if $weight == extrabold or $weight == ultrabold {
+			font-weight: 800;
+		} @else if $weight == heavy or $weight == black or $weight == super {
+			font-weight: 900;
+		} @else {
+			font-weight: $weight;
+		}
 
-    font-style: $style;
-  }
+		font-style: $style;
+	}
 }
 
 @mixin antialiased {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }

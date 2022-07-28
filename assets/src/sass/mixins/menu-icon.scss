@@ -1,51 +1,51 @@
 @use "sass:math";
 
 @mixin menu-icon($width: 30px, $height: 30px, $line-width: 2px, $color: currentColor) {
-  $half-height: math.div($height, 2);
-  $half-line-width: math.div($line-width, 2);
-  $double-line-width: 2 * $line-width;
+	$half-height: math.div($height, 2);
+	$half-line-width: math.div($line-width, 2);
+	$double-line-width: 2 * $line-width;
 
-  @include position-relative;
+	@include position-relative;
 
-  display: block;
-  cursor: pointer;
-  width: $width;
-  height: $height;
+	display: block;
+	cursor: pointer;
+	width: $width;
+	height: $height;
 
-  &::before,
-  &::after {
-    @include position-absolute(50%, $line-width, auto, $line-width);
+	&::before,
+	&::after {
+		@include position-absolute(50%, $line-width, auto, $line-width);
 
-    transition: transform 0.15s ease, opacity 0.3s ease, box-shadow 0.15s ease 0.15s;
-    margin-top: -$half-line-width;
-    background: $color;
-    height: $line-width;
-    content: "";
-  }
+		transition: transform 0.15s ease, opacity 0.3s ease, box-shadow 0.15s ease 0.15s;
+		margin-top: -$half-line-width;
+		background: $color;
+		height: $line-width;
+		content: "";
+	}
 
-  &::before {
-    transform: rotate(0deg);
-    box-shadow: 0 #{-$double-line-width} $color;
-  }
+	&::before {
+		transform: rotate(0deg);
+		box-shadow: 0 #{-$double-line-width} $color;
+	}
 
-  &::after {
-    transform: rotate(0deg);
-    box-shadow: 0 $double-line-width $color;
-  }
+	&::after {
+		transform: rotate(0deg);
+		box-shadow: 0 $double-line-width $color;
+	}
 }
 
 @mixin menu-icon-cross {
-  &::before,
-  &::after {
-    transition: transform 0.3s ease, opacity 0.3s ease;
-    box-shadow: none;
-  }
+	&::before,
+	&::after {
+		transition: transform 0.3s ease, opacity 0.3s ease;
+		box-shadow: none;
+	}
 
-  &::before {
-    transform: rotate(45deg);
-  }
+	&::before {
+		transform: rotate(45deg);
+	}
 
-  &::after {
-    transform: rotate(-45deg);
-  }
+	&::after {
+		transform: rotate(-45deg);
+	}
 }

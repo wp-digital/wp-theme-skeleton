@@ -4,5 +4,5 @@ import domReady from '@wordpress/dom-ready';
 import detectTouchSupport from './modules/detectTouchSupport';
 
 domReady(() => {
-  detectTouchSupport();
+	detectTouchSupport();
 });

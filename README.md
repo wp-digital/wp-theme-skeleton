@@ -8,7 +8,7 @@
 
 **Recommended**
 
-Run `wp scaffold theme`. See details 
+Run `wp scaffold theme`. See details
 [innocode-digital/wp-cli-scaffold-theme-command](https://github.com/innocode-digital/wp-cli-scaffold-theme-command).
 
 Run `npm install` in generated theme directory.
@@ -29,7 +29,7 @@ cd <slug>/
 rm -Rf .git/
 ~~~
 
-Find all `@TODO: ...` in code and replace with needed settings. 
+Find all `@TODO: ...` in code and replace with needed settings.
 Also fill right data in `composer.json` and `package.json`.
 
 Run `npm install` in generated theme directory.

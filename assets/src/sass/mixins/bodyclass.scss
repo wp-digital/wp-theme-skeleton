@@ -1,23 +1,23 @@
 @use "sass:list";
 
 @mixin bodyclass($classes...) {
-  @debug list.length($classes);
+	@debug list.length($classes);
 
-  $length: list.length($classes);
+	$length: list.length($classes);
 
-  @if $length > 1 {
-    $selector: "body.#{list.nth($classes, 1)} &";
+	@if $length > 1 {
+		$selector: "body.#{list.nth($classes, 1)} &";
 
-    @for $i from 2 through $length {
-      $selector: "#{$selector}, body.#{list.nth($classes, $i)} &";
-    }
+		@for $i from 2 through $length {
+			$selector: "#{$selector}, body.#{list.nth($classes, $i)} &";
+		}
 
-    #{$selector} {
-      @content;
-    }
-  } @else {
-    body.#{list.nth($classes, 1)} & {
-      @content;
-    }
-  }
+		#{$selector} {
+			@content;
+		}
+	} @else {
+		body.#{list.nth($classes, 1)} & {
+			@content;
+		}
+	}
 }

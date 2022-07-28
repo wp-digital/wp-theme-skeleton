@@ -1,36 +1,36 @@
 @use "sass:math";
 
 @mixin triangle($direction: top, $color: currentColor, $width: 10px, $height: 10px) {
-  $half-width: math.div($width, 2);
-  $half-height: math.div($height, 2);
+	$half-width: math.div($width, 2);
+	$half-height: math.div($height, 2);
 
-  border-style: solid;
-  width: 0;
-  height: 0;
+	border-style: solid;
+	width: 0;
+	height: 0;
 
-  @if $direction == top {
-    border-width: 0 $half-width $height $half-width;
-    border-color: transparent transparent $color transparent;
-  } @else if $direction == right {
-    border-width: $half-height 0 $half-height $width;
-    border-color: transparent transparent transparent $color;
-  } @else if $direction == bottom {
-    border-width: $height $half-width 0 $half-width;
-    border-color: $color transparent transparent transparent;
-  } @else if $direction == left {
-    border-width: $half-height $width $half-height 0;
-    border-color: transparent $color transparent transparent;
-  } @else if $direction == top-left {
-    border-width: $height $width 0 0;
-    border-color: $color transparent transparent transparent;
-  } @else if $direction == top-right {
-    border-width: 0 $width $height 0;
-    border-color: transparent $color transparent transparent;
-  } @else if $direction == bottom-left {
-    border-width: $height 0 0 $width;
-    border-color: transparent transparent transparent $color;
-  } @else if $direction == bottom-right {
-    border-width: 0 0 $height $width;
-    border-color: transparent transparent $color transparent;
-  }
+	@if $direction == top {
+		border-width: 0 $half-width $height $half-width;
+		border-color: transparent transparent $color transparent;
+	} @else if $direction == right {
+		border-width: $half-height 0 $half-height $width;
+		border-color: transparent transparent transparent $color;
+	} @else if $direction == bottom {
+		border-width: $height $half-width 0 $half-width;
+		border-color: $color transparent transparent transparent;
+	} @else if $direction == left {
+		border-width: $half-height $width $half-height 0;
+		border-color: transparent $color transparent transparent;
+	} @else if $direction == top-left {
+		border-width: $height $width 0 0;
+		border-color: $color transparent transparent transparent;
+	} @else if $direction == top-right {
+		border-width: 0 $width $height 0;
+		border-color: transparent $color transparent transparent;
+	} @else if $direction == bottom-left {
+		border-width: $height 0 0 $width;
+		border-color: transparent transparent transparent $color;
+	} @else if $direction == bottom-right {
+		border-width: 0 0 $height $width;
+		border-color: transparent transparent $color transparent;
+	}
 }

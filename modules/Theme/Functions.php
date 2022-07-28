@@ -9,7 +9,7 @@ use Innocode\WPThemeModule\Abstracts\AbstractFunctions;
  *
  * @package Module\Theme
  */
-class Functions extends AbstractFunctions
-{
+class Functions extends AbstractFunctions {
+
 
 }
