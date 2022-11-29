@@ -11,5 +11,4 @@ use Innocode\WPThemeModule\Abstracts\AbstractFunctions;
  */
 class Functions extends AbstractFunctions {
 
-
 }

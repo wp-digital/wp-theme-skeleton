@@ -1,54 +1,54 @@
 {
-	"root": true,
-	"plugins": [
-		"jest"
-	],
-	"extends": [
-		"airbnb",
-		"airbnb/hooks",
-		"airbnb-typescript",
-		"plugin:jest/style",
-		"plugin:prettier/recommended"
-	],
-	"parser": "@typescript-eslint/parser",
-	"parserOptions": {
-		"project": "./tsconfig.eslint.json",
-		"ecmaVersion": "latest"
-	},
-	"env": {
-		"browser": true,
-		"node": true,
-		"commonjs": true,
-		"shared-node-browser": true,
-		"es2022": true,
-		"worker": true,
-		"amd": true,
-		"jest/globals": true,
-		"jquery": true,
-		"serviceworker": true
-	},
-	"settings": {
-		"import/core-modules": [
-			"jquery"
-		]
-	},
-	"rules": {
-		"react/prop-types": 0,
-		"jsx-a11y/label-has-associated-control": [
-			"error",
-			{
-				"labelComponents": [],
-				"labelAttributes": [],
-				"controlComponents": [],
-				"assert": "either",
-				"depth": 25
-			}
-		],
-		"react/jsx-props-no-spreading": 0,
-		"react/no-did-update-set-state": 0,
-		"react/no-danger": 0,
-		"react/jsx-uses-react": "off",
-		"react/react-in-jsx-scope": "off",
-		"react/require-default-props": "off"
-	}
+  "root": true,
+  "plugins": [
+    "jest"
+  ],
+  "extends": [
+    "airbnb",
+    "airbnb/hooks",
+    "airbnb-typescript",
+    "plugin:jest/style",
+    "plugin:prettier/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.eslint.json",
+    "ecmaVersion": "latest"
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "commonjs": true,
+    "shared-node-browser": true,
+    "es2022": true,
+    "worker": true,
+    "amd": true,
+    "jest/globals": true,
+    "jquery": true,
+    "serviceworker": true
+  },
+  "settings": {
+    "import/core-modules": [
+      "jquery"
+    ]
+  },
+  "rules": {
+    "react/prop-types": 0,
+    "jsx-a11y/label-has-associated-control": [
+      "error",
+      {
+        "labelComponents": [],
+        "labelAttributes": [],
+        "controlComponents": [],
+        "assert": "either",
+        "depth": 25
+      }
+    ],
+    "react/jsx-props-no-spreading": 0,
+    "react/no-did-update-set-state": 0,
+    "react/no-danger": 0,
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/require-default-props": "off"
+  }
 }
